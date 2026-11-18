@@ -1,26 +1,246 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f7f8;
+  --surface: #ffffff;
+  --foreground: #0f172a;
+  --muted: #5b6577;
+  --border: #e2e8ec;
+  --brand: #0e7490;
+  --brand-strong: #155e75;
+  --brand-soft: #e6f6f9;
+  --ink: #06131b;
+  --glow: #5eead4;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-ink: var(--ink);
+  --color-glow: var(--glow);
+  --font-sans: var(--font-geist-sans), "Segoe UI", Tahoma, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Nothing on the site should scroll sideways as a whole page. */
+html,
+body {
+  overflow-x: clip;
+}
+
+/* ---------- Homepage hero ---------- */
+
+.hero-space {
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgb(255 255 255 / 0.7), transparent),
+    radial-gradient(1px 1px at 28% 72%, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 44% 34%, rgb(255 255 255 / 0.6), transparent),
+    radial-gradient(1px 1px at 63% 12%, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1px 1px at 78% 58%, rgb(255 255 255 / 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 90% 26%, rgb(255 255 255 / 0.5), transparent),
+    radial-gradient(1px 1px at 8% 88%, rgb(255 255 255 / 0.4), transparent),
+    radial-gradient(1px 1px at 54% 90%, rgb(255 255 255 / 0.4), transparent),
+    radial-gradient(ellipse at 70% 45%, #0b3a4f 0%, #06131b 55%, #030a0f 100%);
+}
+
+/* The globe drifts in from deep space. */
+.hero-globe {
+  opacity: 0;
+  transform: scale(1.12);
+  transition:
+    opacity 1.6s ease-out,
+    transform 3.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-globe.is-ready {
+  opacity: 1;
+  transform: none;
+}
+.hero-globe .maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib,
+.hero-globe .maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib.maplibregl-compact-show {
+  background: rgb(6 19 27 / 0.6);
+  color: rgb(255 255 255 / 0.55);
+  font-size: 10px;
+}
+.hero-globe .maplibregl-ctrl-attrib a {
+  color: rgb(255 255 255 / 0.7);
+}
+.hero-globe .maplibregl-ctrl-attrib-button {
+  filter: invert(1);
+  background-color: transparent;
+}
+
+.hero-globe .maplibregl-ctrl-group {
+  background: rgb(6 19 27 / 0.75);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  box-shadow: none;
+}
+.hero-globe .maplibregl-ctrl-group button + button {
+  border-top-color: rgb(255 255 255 / 0.12);
+}
+.hero-globe .maplibregl-ctrl-group .maplibregl-ctrl-icon {
+  filter: invert(1);
+}
+
+/* Map popups: dark glass cards. */
+.atlas-popup .maplibregl-popup-content {
+  padding: 0;
+  border-radius: 16px;
+  background: rgb(6 19 27 / 0.92);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  box-shadow: 0 20px 40px -12px rgb(0 0 0 / 0.6);
+  backdrop-filter: blur(8px);
+}
+.atlas-popup .maplibregl-popup-close-button {
+  color: rgb(255 255 255 / 0.6);
+  font-size: 18px;
+  padding: 2px 8px;
+}
+.atlas-popup.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+  border-top-color: rgb(6 19 27 / 0.92);
+}
+.atlas-popup.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+  border-bottom-color: rgb(6 19 27 / 0.92);
+}
+.atlas-popup.maplibregl-popup-anchor-left .maplibregl-popup-tip {
+  border-right-color: rgb(6 19 27 / 0.92);
+}
+.atlas-popup.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+  border-left-color: rgb(6 19 27 / 0.92);
+}
+.atlas-popup-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 28px 12px 12px;
+  color: #fff;
+  font-family: var(--font-geist-sans), "Segoe UI", Tahoma, sans-serif;
+}
+.atlas-popup-swatch {
+  display: flex;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 26px;
+}
+.atlas-popup-card > span:last-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.atlas-popup-card strong {
+  font-size: 14px;
+  line-height: 1.3;
+}
+.atlas-popup-kind {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--glow);
+}
+.atlas-popup-place {
+  font-size: 12px;
+  color: rgb(255 255 255 / 0.6);
+}
+.atlas-popup-open {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--glow);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.rise {
+  opacity: 0;
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.now-card {
+  animation: card-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes live {
+  0% {
+    box-shadow: 0 0 0 0 rgb(94 234 212 / 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgb(94 234 212 / 0);
+  }
+}
+.live-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: var(--glow);
+  animation: live 1.6s ease-out infinite;
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+.scroll-cue {
+  animation: nudge 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-globe,
+  .rise,
+  .now-card,
+  .live-dot,
+  .scroll-cue {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
 }

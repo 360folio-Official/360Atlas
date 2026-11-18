@@ -1,0 +1,146 @@
+{
+  "site": {
+    "name": "360atlas",
+    "tagline": "Get your 360° tours discovered",
+    "description": "The world map where VR photographers and 360° creators list their virtual tours and get found by travellers, venues and businesses."
+  },
+  "nav": {
+    "home": "Home",
+    "map": "Map",
+    "categories": "Categories",
+    "providers": "Service providers",
+    "membership": "Membership",
+    "about": "About",
+    "contact": "Contact",
+    "signIn": "Sign in",
+    "listTour": "List your tours"
+  },
+  "home": {
+    "heroTitle": "Put your 360° work on the world map",
+    "heroText": "List your virtual tours from any platform, get a creator profile, and be found by the travellers, venues and businesses searching your area.",
+    "exploreMap": "Explore the map",
+    "browseCategories": "Browse categories",
+    "featured": "Featured tours",
+    "categories": "Explore by category",
+    "latest": "Recently added",
+    "providers": "Featured service providers",
+    "viewAll": "View all",
+    "ctaTitle": "Ready to be found?",
+    "ctaText": "Start free with 5 listings. Upgrade for enquiries, analytics and featured placement.",
+    "ctaButton": "See membership plans",
+    "eyebrow": "For VR photographers & 360° creators",
+    "nowShowing": "Now on the globe",
+    "viewTour": "View tour",
+    "statTours": "tours listed",
+    "statCountries": "countries",
+    "scroll": "Scroll to explore",
+    "howTitle": "How it works for creators",
+    "how1Title": "Create your profile",
+    "how1Text": "Add your business, the platforms you work with and the areas you cover.",
+    "how2Title": "Add your tours",
+    "how2Text": "Paste a link from Matterport, Kuula, 3DVista or any platform. Each tour gets its own pin on the map.",
+    "how3Title": "Get discovered",
+    "how3Text": "People find your work on the map, open your tours and contact you directly.",
+    "listFree": "List your tours free",
+    "statCreators": "creators"
+  },
+  "categoriesPage": {
+    "title": "Categories",
+    "intro": "Browse virtual tours by the kind of place.",
+    "tours": "tours",
+    "empty": "No tours in this category yet."
+  },
+  "mapPage": {
+    "title": "Map",
+    "intro": "Every pin is a place you can step inside.",
+    "allCategories": "All categories",
+    "results": "tours shown"
+  },
+  "tour": {
+    "open": "Open the tour",
+    "opensOn": "Opens on",
+    "category": "Category",
+    "location": "Location",
+    "platform": "Platform",
+    "createdBy": "Created by",
+    "nearby": "More tours nearby",
+    "sample": "Sample listing"
+  },
+  "providersPage": {
+    "title": "Service providers",
+    "intro": "Find a VR photographer or virtual tour agency near you.",
+    "searchPlaceholder": "Search by city or country",
+    "verified": "Verified",
+    "operatesWithin": "Operates within",
+    "km": "km of",
+    "viewProfile": "View profile",
+    "empty": "No providers match that location yet.",
+    "tours": "Tours by this provider",
+    "about": "About",
+    "platforms": "Platforms",
+    "enquire": "Send an enquiry",
+    "enquireSoon": "Enquiries open when memberships launch."
+  },
+  "membership": {
+    "title": "Membership",
+    "intro": "Free to start. Upgrade when you want leads, analytics and featured placement.",
+    "perMonth": "per month",
+    "perYear": "per year",
+    "choose": "Get started",
+    "free": "Free",
+    "pro": "Pro",
+    "business": "Business",
+    "freeDesc": "Fill the map with your work.",
+    "proDesc": "Turn views into enquiries.",
+    "businessDesc": "Be seen first, everywhere you work.",
+    "features": {
+      "listings5": "5 listings",
+      "listingsUnlimited": "Unlimited listings",
+      "directory": "Profile in the provider directory",
+      "areas1": "1 operating area",
+      "areas3": "3 operating areas",
+      "areas10": "10 operating areas",
+      "enquiries": "Enquiry form and lead inbox",
+      "links": "Website and booking buttons",
+      "analyticsTotals": "Total views and opens",
+      "analyticsFull": "Full analytics per listing",
+      "analyticsExport": "Full analytics with export",
+      "badge": "Verified badge",
+      "featured": "3 featured slots per month",
+      "carousel": "Homepage carousel and highlighted pins",
+      "priority": "Priority in search results"
+    },
+    "lapseTitle": "What if I stop paying?",
+    "lapseText": "Your listings stay live. Paid perks switch off until you resubscribe."
+  },
+  "about": {
+    "title": "About 360atlas",
+    "p1": "360atlas is one map for virtual tours from every platform: Matterport, Kuula, 3DVista, CloudPano, Google Street View and more.",
+    "p2": "Travellers use it to see a place before they go. VR photographers and tour owners use it to be found.",
+    "p3": "Tours always open on the platform that hosts them, with full credit to the people who made them."
+  },
+  "contact": {
+    "title": "Contact us",
+    "intro": "Questions, partnerships or a tour you want removed? Write to us.",
+    "name": "Your name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send message",
+    "soon": "The contact form goes live at launch."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "language": "Language",
+    "tagline": "The world map of 360° virtual tours."
+  },
+  "categories": {
+    "hotels": "Hotels & resorts",
+    "attractions": "Attractions",
+    "museums": "Museums & galleries",
+    "venues": "Event venues",
+    "restaurants": "Restaurants & cafés",
+    "real-estate": "Real estate",
+    "education": "Education",
+    "nature": "Nature & parks"
+  }
+}

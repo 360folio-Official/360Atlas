@@ -1,0 +1,146 @@
+{
+  "site": {
+    "name": "360atlas",
+    "tagline": "Faites découvrir vos visites 360°",
+    "description": "La carte du monde où photographes VR et créateurs 360° publient leurs visites virtuelles et se font trouver par les voyageurs, les lieux et les entreprises."
+  },
+  "nav": {
+    "home": "Accueil",
+    "map": "Carte",
+    "categories": "Catégories",
+    "providers": "Prestataires",
+    "membership": "Adhésion",
+    "about": "À propos",
+    "contact": "Contact",
+    "signIn": "Connexion",
+    "listTour": "Publiez vos visites"
+  },
+  "home": {
+    "heroTitle": "Mettez votre travail 360° sur la carte du monde",
+    "heroText": "Publiez vos visites virtuelles depuis n'importe quelle plateforme, créez votre profil et faites-vous trouver par les voyageurs, lieux et entreprises qui cherchent dans votre région.",
+    "exploreMap": "Explorer la carte",
+    "browseCategories": "Parcourir les catégories",
+    "featured": "Visites à la une",
+    "categories": "Explorer par catégorie",
+    "latest": "Ajouts récents",
+    "providers": "Prestataires à la une",
+    "viewAll": "Tout voir",
+    "ctaTitle": "Prêt à vous faire trouver ?",
+    "ctaText": "Commencez gratuitement avec 5 fiches. Passez à l'offre supérieure pour les demandes, les statistiques et la mise en avant.",
+    "ctaButton": "Voir les formules",
+    "eyebrow": "Pour les photographes VR et créateurs 360°",
+    "nowShowing": "En ce moment sur le globe",
+    "viewTour": "Voir la visite",
+    "statTours": "visites publiées",
+    "statCountries": "pays",
+    "scroll": "Faites défiler pour explorer",
+    "howTitle": "Comment ça marche pour les créateurs",
+    "how1Title": "Créez votre profil",
+    "how1Text": "Ajoutez votre activité, les plateformes que vous utilisez et les zones que vous couvrez.",
+    "how2Title": "Ajoutez vos visites",
+    "how2Text": "Collez un lien Matterport, Kuula, 3DVista ou de toute autre plateforme. Chaque visite a son propre repère sur la carte.",
+    "how3Title": "Faites-vous découvrir",
+    "how3Text": "Les gens trouvent votre travail sur la carte, ouvrent vos visites et vous contactent directement.",
+    "listFree": "Publiez vos visites gratuitement",
+    "statCreators": "créateurs"
+  },
+  "categoriesPage": {
+    "title": "Catégories",
+    "intro": "Parcourez les visites virtuelles par type de lieu.",
+    "tours": "visites",
+    "empty": "Aucune visite dans cette catégorie pour l'instant."
+  },
+  "mapPage": {
+    "title": "Carte",
+    "intro": "Chaque repère est un lieu dans lequel vous pouvez entrer.",
+    "allCategories": "Toutes les catégories",
+    "results": "visites affichées"
+  },
+  "tour": {
+    "open": "Ouvrir la visite",
+    "opensOn": "S'ouvre sur",
+    "category": "Catégorie",
+    "location": "Lieu",
+    "platform": "Plateforme",
+    "createdBy": "Réalisée par",
+    "nearby": "Autres visites à proximité",
+    "sample": "Annonce d'exemple"
+  },
+  "providersPage": {
+    "title": "Prestataires",
+    "intro": "Trouvez un photographe VR ou une agence de visites virtuelles près de chez vous.",
+    "searchPlaceholder": "Rechercher par ville ou pays",
+    "verified": "Vérifié",
+    "operatesWithin": "Intervient à moins de",
+    "km": "km de",
+    "viewProfile": "Voir le profil",
+    "empty": "Aucun prestataire pour ce lieu pour l'instant.",
+    "tours": "Visites de ce prestataire",
+    "about": "À propos",
+    "platforms": "Plateformes",
+    "enquire": "Envoyer une demande",
+    "enquireSoon": "Les demandes ouvriront au lancement des adhésions."
+  },
+  "membership": {
+    "title": "Adhésion",
+    "intro": "Commencez gratuitement. Passez à la formule supérieure pour obtenir des contacts, des statistiques et une mise en avant.",
+    "perMonth": "par mois",
+    "perYear": "par an",
+    "choose": "Commencer",
+    "free": "Gratuit",
+    "pro": "Pro",
+    "business": "Business",
+    "freeDesc": "Remplissez la carte avec votre travail.",
+    "proDesc": "Transformez les vues en demandes.",
+    "businessDesc": "Soyez vu en premier, partout où vous travaillez.",
+    "features": {
+      "listings5": "5 annonces",
+      "listingsUnlimited": "Annonces illimitées",
+      "directory": "Profil dans l'annuaire des prestataires",
+      "areas1": "1 zone d'intervention",
+      "areas3": "3 zones d'intervention",
+      "areas10": "10 zones d'intervention",
+      "enquiries": "Formulaire de demande et boîte de contacts",
+      "links": "Boutons site web et réservation",
+      "analyticsTotals": "Total des vues et des ouvertures",
+      "analyticsFull": "Statistiques complètes par annonce",
+      "analyticsExport": "Statistiques complètes avec export",
+      "badge": "Badge vérifié",
+      "featured": "3 emplacements à la une par mois",
+      "carousel": "Carrousel d'accueil et repères mis en avant",
+      "priority": "Priorité dans les résultats"
+    },
+    "lapseTitle": "Et si j'arrête de payer ?",
+    "lapseText": "Vos annonces restent en ligne. Les avantages payants sont désactivés jusqu'à votre réabonnement."
+  },
+  "about": {
+    "title": "À propos de 360atlas",
+    "p1": "360atlas est une carte unique pour les visites virtuelles de toutes les plateformes : Matterport, Kuula, 3DVista, CloudPano, Google Street View et d'autres.",
+    "p2": "Les voyageurs l'utilisent pour voir un lieu avant d'y aller. Les photographes VR et les propriétaires de visites l'utilisent pour être trouvés.",
+    "p3": "Les visites s'ouvrent toujours sur la plateforme qui les héberge, avec tout le crédit à leurs auteurs."
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Une question, un partenariat ou une visite à retirer ? Écrivez-nous.",
+    "name": "Votre nom",
+    "email": "E-mail",
+    "message": "Message",
+    "send": "Envoyer le message",
+    "soon": "Le formulaire de contact sera actif au lancement."
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "language": "Langue",
+    "tagline": "La carte du monde des visites virtuelles 360°."
+  },
+  "categories": {
+    "hotels": "Hôtels et resorts",
+    "attractions": "Attractions",
+    "museums": "Musées et galeries",
+    "venues": "Lieux d'événements",
+    "restaurants": "Restaurants et cafés",
+    "real-estate": "Immobilier",
+    "education": "Éducation",
+    "nature": "Nature et parcs"
+  }
+}

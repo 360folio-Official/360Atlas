@@ -1,0 +1,146 @@
+{
+  "site": {
+    "name": "360atlas",
+    "tagline": "Haz que descubran tus tours 360°",
+    "description": "El mapa mundial donde fotógrafos VR y creadores 360° publican sus tours virtuales y los encuentran viajeros, espacios y empresas."
+  },
+  "nav": {
+    "home": "Inicio",
+    "map": "Mapa",
+    "categories": "Categorías",
+    "providers": "Proveedores",
+    "membership": "Membresía",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "signIn": "Iniciar sesión",
+    "listTour": "Publica tus tours"
+  },
+  "home": {
+    "heroTitle": "Pon tu trabajo 360° en el mapa del mundo",
+    "heroText": "Publica tus tours virtuales de cualquier plataforma, crea tu perfil de creador y deja que te encuentren los viajeros, espacios y empresas que buscan en tu zona.",
+    "exploreMap": "Explorar el mapa",
+    "browseCategories": "Ver categorías",
+    "featured": "Tours destacados",
+    "categories": "Explora por categoría",
+    "latest": "Añadidos recientemente",
+    "providers": "Proveedores destacados",
+    "viewAll": "Ver todo",
+    "ctaTitle": "¿Listo para que te encuentren?",
+    "ctaText": "Empieza gratis con 5 fichas. Mejora tu plan para recibir consultas, analíticas y posiciones destacadas.",
+    "ctaButton": "Ver planes de membresía",
+    "eyebrow": "Para fotógrafos VR y creadores 360°",
+    "nowShowing": "Ahora en el globo",
+    "viewTour": "Ver tour",
+    "statTours": "tours publicados",
+    "statCountries": "países",
+    "scroll": "Desplázate para explorar",
+    "howTitle": "Cómo funciona para creadores",
+    "how1Title": "Crea tu perfil",
+    "how1Text": "Añade tu negocio, las plataformas con las que trabajas y las zonas que cubres.",
+    "how2Title": "Añade tus tours",
+    "how2Text": "Pega un enlace de Matterport, Kuula, 3DVista o cualquier plataforma. Cada tour tiene su propio pin en el mapa.",
+    "how3Title": "Haz que te descubran",
+    "how3Text": "La gente encuentra tu trabajo en el mapa, abre tus tours y te contacta directamente.",
+    "listFree": "Publica tus tours gratis",
+    "statCreators": "creadores"
+  },
+  "categoriesPage": {
+    "title": "Categorías",
+    "intro": "Explora tours virtuales según el tipo de lugar.",
+    "tours": "tours",
+    "empty": "Todavía no hay tours en esta categoría."
+  },
+  "mapPage": {
+    "title": "Mapa",
+    "intro": "Cada marcador es un lugar en el que puedes entrar.",
+    "allCategories": "Todas las categorías",
+    "results": "tours mostrados"
+  },
+  "tour": {
+    "open": "Abrir el tour",
+    "opensOn": "Se abre en",
+    "category": "Categoría",
+    "location": "Ubicación",
+    "platform": "Plataforma",
+    "createdBy": "Creado por",
+    "nearby": "Más tours cerca",
+    "sample": "Anuncio de muestra"
+  },
+  "providersPage": {
+    "title": "Proveedores de servicios",
+    "intro": "Encuentra un fotógrafo de RV o una agencia de tours virtuales cerca de ti.",
+    "searchPlaceholder": "Busca por ciudad o país",
+    "verified": "Verificado",
+    "operatesWithin": "Trabaja a menos de",
+    "km": "km de",
+    "viewProfile": "Ver perfil",
+    "empty": "Todavía no hay proveedores en esa ubicación.",
+    "tours": "Tours de este proveedor",
+    "about": "Acerca de",
+    "platforms": "Plataformas",
+    "enquire": "Enviar una consulta",
+    "enquireSoon": "Las consultas se abrirán cuando se lancen las membresías."
+  },
+  "membership": {
+    "title": "Membresía",
+    "intro": "Empieza gratis. Mejora tu plan cuando quieras contactos, analíticas y posición destacada.",
+    "perMonth": "al mes",
+    "perYear": "al año",
+    "choose": "Empezar",
+    "free": "Gratis",
+    "pro": "Pro",
+    "business": "Business",
+    "freeDesc": "Llena el mapa con tu trabajo.",
+    "proDesc": "Convierte las visitas en consultas.",
+    "businessDesc": "Aparece primero allí donde trabajas.",
+    "features": {
+      "listings5": "5 anuncios",
+      "listingsUnlimited": "Anuncios ilimitados",
+      "directory": "Perfil en el directorio de proveedores",
+      "areas1": "1 zona de trabajo",
+      "areas3": "3 zonas de trabajo",
+      "areas10": "10 zonas de trabajo",
+      "enquiries": "Formulario de consultas y bandeja de contactos",
+      "links": "Botones de sitio web y reservas",
+      "analyticsTotals": "Total de vistas y aperturas",
+      "analyticsFull": "Analíticas completas por anuncio",
+      "analyticsExport": "Analíticas completas con exportación",
+      "badge": "Insignia de verificado",
+      "featured": "3 espacios destacados al mes",
+      "carousel": "Carrusel de inicio y marcadores resaltados",
+      "priority": "Prioridad en los resultados"
+    },
+    "lapseTitle": "¿Y si dejo de pagar?",
+    "lapseText": "Tus anuncios siguen visibles. Las ventajas de pago se desactivan hasta que vuelvas a suscribirte."
+  },
+  "about": {
+    "title": "Acerca de 360atlas",
+    "p1": "360atlas es un único mapa para tours virtuales de todas las plataformas: Matterport, Kuula, 3DVista, CloudPano, Google Street View y más.",
+    "p2": "Los viajeros lo usan para ver un lugar antes de ir. Los fotógrafos de RV y los propietarios de tours lo usan para que los encuentren.",
+    "p3": "Los tours siempre se abren en la plataforma que los aloja, con todo el crédito para quienes los crearon."
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "¿Preguntas, colaboraciones o un tour que quieres retirar? Escríbenos.",
+    "name": "Tu nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "send": "Enviar mensaje",
+    "soon": "El formulario de contacto se activará en el lanzamiento."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "language": "Idioma",
+    "tagline": "El mapa mundial de los tours virtuales 360°."
+  },
+  "categories": {
+    "hotels": "Hoteles y resorts",
+    "attractions": "Atracciones",
+    "museums": "Museos y galerías",
+    "venues": "Espacios para eventos",
+    "restaurants": "Restaurantes y cafés",
+    "real-estate": "Inmuebles",
+    "education": "Educación",
+    "nature": "Naturaleza y parques"
+  }
+}

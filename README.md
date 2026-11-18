@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 360atlas web
 
-## Getting Started
+The 360atlas.net site: a worldwide, multilingual directory of 360° virtual tours.
+The concept, pricing and roadmap are in `../docs/`.
 
-First, run the development server:
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. The root redirects to `/en`, `/ar`, `/es` or `/fr` based on the browser language.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What exists
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Public area** under `src/app/[lang]/`: home, map, categories, tour pages, service providers, provider profiles, membership, about, contact.
+- **Click redirect** at `/go/{id}`: every "Open the tour" click goes through it so opens can be counted.
+- **Translations** in `src/i18n/dictionaries/` (English, Arabic, Spanish, French).
+- **Database schema** in `supabase/migrations/0001_init.sql` (Postgres + PostGIS). Not applied anywhere yet.
 
-## Learn More
+## What is still sample data
 
-To learn more about Next.js, take a look at the following resources:
+The site reads from `src/data/seed.ts` through `src/lib/data.ts`. Every listing and provider there is a placeholder, and tour links point at example.com. Replace the functions in `src/lib/data.ts` with Supabase queries once a project is connected.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Not built yet: sign-in, the members area, Stripe subscriptions, enquiries, the admin panel and the link checker.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- The map uses MapLibre with OpenFreeMap tiles (no API key). Its worker file is copied into `public/` by `npm run copy-map-worker`, which runs before `dev` and `build`.
+- This is Next.js 16 with Cache Components. Read `AGENTS.md` before changing routing or data fetching.
