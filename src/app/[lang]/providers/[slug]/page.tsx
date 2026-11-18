@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import DarkPage, { DarkHeading } from "@/components/DarkPage";
 import MapView from "@/components/MapView";
 import TourCard from "@/components/TourCard";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -30,72 +31,78 @@ export default async function ProviderPage({
   const listings = getListingsByProvider(provider.slug);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10">
-      <div className="flex flex-wrap items-start gap-5">
-        <span className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-brand-soft text-3xl font-bold text-brand-strong">
-          {provider.name.charAt(0)}
+    <DarkPage
+      eyebrow={{ label: labels.title, href: `/${locale}/providers` }}
+      title={
+        <span className="flex items-center gap-4">
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-glow to-brand text-3xl font-bold text-ink shadow-[0_0_40px_-6px] shadow-glow/60 sm:h-20 sm:w-20">
+            {provider.name.charAt(0)}
+          </span>
+          {provider.name}
         </span>
-        <div className="min-w-0 flex-1">
-          <h1 className="text-3xl font-bold tracking-tight text-ink">
-            {provider.name}
-            {provider.verified && (
-              <span className="ms-3 rounded-full bg-emerald-50 px-3 py-1 align-middle text-sm font-medium text-emerald-700">
-                ✓ {labels.verified}
-              </span>
-            )}
-          </h1>
-          <p className="mt-1 text-muted">
+      }
+      intro={
+        <span className="flex flex-wrap items-center gap-3">
+          {provider.verified && (
+            <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-sm font-medium text-emerald-300">
+              ✓ {labels.verified}
+            </span>
+          )}
+          <span>
             {labels.operatesWithin} {provider.radiusKm} {labels.km}{" "}
             {provider.city}, {provider.country}
-          </p>
-          <p className="mt-4 max-w-2xl">{provider.bio}</p>
-          <p className="mt-4 flex flex-wrap items-center gap-2 text-sm">
-            <span className="text-muted">{labels.platforms}:</span>
+          </span>
+        </span>
+      }
+      header={
+        <>
+          <p className="max-w-xl leading-relaxed text-white/80">{provider.bio}</p>
+          <p className="mt-5 flex flex-wrap items-center gap-2 text-sm">
+            <span className="text-white/50">{labels.platforms}:</span>
             {provider.platforms.map((platform) => (
               <span
                 key={platform}
-                className="rounded-full border border-border bg-surface px-3 py-0.5"
+                className="rounded-full border border-white/15 bg-white/5 px-3 py-0.5 text-white/80"
               >
                 {platform}
               </span>
             ))}
           </p>
-        </div>
-        <div className="rounded-xl border border-border bg-surface p-5 text-center">
+        </>
+      }
+      aside={
+        <div className="w-full rounded-2xl border border-white/10 bg-ink/60 p-6 text-center backdrop-blur-md lg:w-72">
           <button
             type="button"
             disabled
-            className="rounded-full bg-brand px-6 py-3 font-semibold text-white opacity-50"
+            className="w-full rounded-full bg-glow px-6 py-3 font-semibold text-ink opacity-50"
           >
             {labels.enquire}
           </button>
-          <p className="mt-2 max-w-48 text-xs text-muted">
-            {labels.enquireSoon}
-          </p>
+          <p className="mt-3 text-xs text-white/50">{labels.enquireSoon}</p>
         </div>
-      </div>
-
-      <h2 className="mt-12 text-2xl font-bold text-ink">{labels.tours}</h2>
-      <div className="mt-5">
-        <MapView
-          points={toMapPoints(listings)}
-          locale={locale}
-          openLabel={dict.tour.open}
-          center={[provider.lng, provider.lat]}
-          zoom={9}
-          className="h-80"
-        />
-      </div>
-      <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      }
+    >
+      <DarkHeading>{labels.tours}</DarkHeading>
+      <MapView
+        points={toMapPoints(listings)}
+        locale={locale}
+        openLabel={dict.tour.open}
+        center={[provider.lng, provider.lat]}
+        zoom={9}
+        className="h-80 sm:h-96"
+      />
+      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {listings.map((listing) => (
           <TourCard
             key={listing.id}
             listing={listing}
             locale={locale}
             categoryName={dict.categories[listing.category]}
+            dark
           />
         ))}
       </div>
-    </div>
+    </DarkPage>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PageShell from "@/components/PageShell";
+import DarkPage from "@/components/DarkPage";
 import ProviderSearch from "@/components/ProviderSearch";
 import { getDictionary } from "@/i18n/dictionaries";
 import { getProviders } from "@/lib/data";
@@ -14,7 +14,7 @@ export default async function ProvidersPage() {
   const { searchPlaceholder, verified, empty } = dict.providersPage;
 
   return (
-    <PageShell
+    <DarkPage
       title={dict.providersPage.title}
       intro={dict.providersPage.intro}
     >
@@ -23,6 +23,6 @@ export default async function ProvidersPage() {
         locale={locale}
         labels={{ searchPlaceholder, verified, empty }}
       />
-    </PageShell>
+    </DarkPage>
   );
 }

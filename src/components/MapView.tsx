@@ -9,6 +9,7 @@ import {
   type GeoJSONSource,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { DARK_STYLE_URL, PIN, tintStyle } from "@/lib/map-style";
 
 // The bundler can't resolve MapLibre's worker on its own, so it is served from
 // public/ (copied there by `npm run copy-map-worker`).
@@ -35,9 +36,7 @@ type Props = {
   className?: string;
 };
 
-const STYLE_URL = "https://tiles.openfreemap.org/styles/positron";
 const SOURCE = "tours";
-const BRAND = "#0e7490";
 
 const toGeoJSON = (points: MapPoint[]) => ({
   type: "FeatureCollection" as const,
@@ -74,7 +73,7 @@ export default function MapView({
     if (!container.current) return;
     const map = new MapLibreMap({
       container: container.current,
-      style: STYLE_URL,
+      style: DARK_STYLE_URL,
       center,
       zoom,
     });
@@ -82,6 +81,7 @@ export default function MapView({
     map.addControl(new NavigationControl({ showCompass: false }), "top-right");
 
     map.on("error", (event) => console.error("Map error:", event.error));
+    map.on("style.load", () => tintStyle(map, { labels: "all" }));
 
     map.on("load", () => {
       map.addSource(SOURCE, {
@@ -97,11 +97,11 @@ export default function MapView({
         source: SOURCE,
         filter: ["has", "point_count"],
         paint: {
-          "circle-color": BRAND,
-          "circle-opacity": 0.85,
+          "circle-color": "#0b3a4f",
+          "circle-opacity": 0.95,
           "circle-radius": ["step", ["get", "point_count"], 16, 5, 22, 25, 30],
-          "circle-stroke-width": 3,
-          "circle-stroke-color": "#ffffff",
+          "circle-stroke-width": 2,
+          "circle-stroke-color": PIN,
         },
       });
       map.addLayer({
@@ -122,10 +122,10 @@ export default function MapView({
         source: SOURCE,
         filter: ["!", ["has", "point_count"]],
         paint: {
-          "circle-color": BRAND,
-          "circle-radius": 8,
-          "circle-stroke-width": 3,
-          "circle-stroke-color": "#ffffff",
+          "circle-color": PIN,
+          "circle-radius": 7,
+          "circle-stroke-width": 2,
+          "circle-stroke-color": "#06131b",
         },
       });
 
@@ -153,14 +153,16 @@ export default function MapView({
         heading.textContent = title;
         const where = document.createElement("div");
         where.textContent = place;
-        where.style.cssText = "color:#5b6577;font-size:12px;margin:2px 0 8px";
+        where.className = "atlas-popup-place";
+        where.style.margin = "2px 0 8px";
         const link = document.createElement("a");
         link.href = `/${locale}/tours/${slug}`;
         link.textContent = openLabel;
-        link.style.cssText = `color:${BRAND};font-weight:600`;
+        link.className = "atlas-popup-open";
+        body.className = "atlas-popup-plain";
         body.append(heading, where, link);
 
-        new Popup({ offset: 12 })
+        new Popup({ offset: 12, className: "atlas-popup" })
           .setLngLat(feature.geometry.coordinates as [number, number])
           .setDOMContent(body)
           .addTo(map);
@@ -214,7 +216,7 @@ export default function MapView({
       <div
         ref={container}
         dir="ltr"
-        className={`w-full overflow-hidden rounded-xl border border-border ${className}`}
+        className={`atlas-map w-full overflow-hidden rounded-2xl border border-white/10 bg-ink ${className}`}
       />
     </div>
   );

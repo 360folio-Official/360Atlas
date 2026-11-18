@@ -72,29 +72,29 @@ body {
   opacity: 1;
   transform: none;
 }
-.hero-globe .maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib,
-.hero-globe .maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib.maplibregl-compact-show {
+:is(.hero-globe, .atlas-map) .maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib,
+:is(.hero-globe, .atlas-map) .maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib.maplibregl-compact-show {
   background: rgb(6 19 27 / 0.6);
   color: rgb(255 255 255 / 0.55);
   font-size: 10px;
 }
-.hero-globe .maplibregl-ctrl-attrib a {
+:is(.hero-globe, .atlas-map) .maplibregl-ctrl-attrib a {
   color: rgb(255 255 255 / 0.7);
 }
-.hero-globe .maplibregl-ctrl-attrib-button {
+:is(.hero-globe, .atlas-map) .maplibregl-ctrl-attrib-button {
   filter: invert(1);
   background-color: transparent;
 }
 
-.hero-globe .maplibregl-ctrl-group {
+:is(.hero-globe, .atlas-map) .maplibregl-ctrl-group {
   background: rgb(6 19 27 / 0.75);
   border: 1px solid rgb(255 255 255 / 0.12);
   box-shadow: none;
 }
-.hero-globe .maplibregl-ctrl-group button + button {
+:is(.hero-globe, .atlas-map) .maplibregl-ctrl-group button + button {
   border-top-color: rgb(255 255 255 / 0.12);
 }
-.hero-globe .maplibregl-ctrl-group .maplibregl-ctrl-icon {
+:is(.hero-globe, .atlas-map) .maplibregl-ctrl-group .maplibregl-ctrl-icon {
   filter: invert(1);
 }
 
@@ -131,6 +131,13 @@ body {
   padding: 12px 28px 12px 12px;
   color: #fff;
   font-family: var(--font-geist-sans), "Segoe UI", Tahoma, sans-serif;
+}
+.atlas-popup-plain {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 28px 12px 14px;
+  color: #fff;
+  font-size: 14px;
 }
 .atlas-popup-swatch {
   display: flex;

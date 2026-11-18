@@ -30,10 +30,10 @@ export default function ProviderSearch({
         onChange={(event) => setQuery(event.target.value)}
         placeholder={labels.searchPlaceholder}
         aria-label={labels.searchPlaceholder}
-        className="w-full max-w-md rounded-full border border-border bg-surface px-5 py-3 text-sm shadow-sm outline-none focus:border-brand"
+        className="w-full max-w-md rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-white/40 outline-none backdrop-blur transition focus:border-glow focus:bg-white/10"
       />
       {matches.length === 0 ? (
-        <p className="mt-8 text-muted">{labels.empty}</p>
+        <p className="mt-8 text-white/60">{labels.empty}</p>
       ) : (
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {matches.map((provider) => (
@@ -42,6 +42,7 @@ export default function ProviderSearch({
               provider={provider}
               locale={locale}
               verifiedLabel={labels.verified}
+              dark
             />
           ))}
         </div>
