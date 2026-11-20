@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
-import { getCategory, type Listing } from "@/lib/data";
+import { getCategory } from "@/lib/categories";
+import type { Listing } from "@/lib/data";
 
 // Placeholder artwork until real thumbnails are stored with each listing.
 export function TourThumb({

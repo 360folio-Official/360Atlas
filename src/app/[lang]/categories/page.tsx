@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DarkPage from "@/components/DarkPage";
 import { getDictionary } from "@/i18n/dictionaries";
-import { getCategories, getListingsByCategory } from "@/lib/data";
+import { getCategories, getCategoryCounts } from "@/lib/data";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { dict } = await getDictionary();
@@ -11,6 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function CategoriesPage() {
   const { locale, dict } = await getDictionary();
+  const counts = await getCategoryCounts();
 
   return (
     <DarkPage
@@ -40,7 +41,7 @@ export default async function CategoriesPage() {
               {dict.categories[category.slug]}
             </span>
             <span className="relative mt-0.5 text-sm text-white/65">
-              {getListingsByCategory(category.slug).length}{" "}
+              {counts[category.slug] ?? 0}{" "}
               {dict.categoriesPage.tours}
               <span className="ms-2 inline-block opacity-0 transition group-hover:opacity-100 rtl:rotate-180">
                 →

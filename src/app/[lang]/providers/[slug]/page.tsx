@@ -7,15 +7,15 @@ import { getDictionary } from "@/i18n/dictionaries";
 import { getListingsByProvider, getProvider, getProviders } from "@/lib/data";
 import { toMapPoints } from "@/lib/map-points";
 
-export function generateStaticParams() {
-  return getProviders().map(({ slug }) => ({ slug }));
+export async function generateStaticParams() {
+  return (await getProviders()).map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/providers/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const provider = getProvider(slug);
+  const provider = await getProvider(slug);
   return { title: provider && `${provider.name}, ${provider.city}` };
 }
 
@@ -23,12 +23,12 @@ export default async function ProviderPage({
   params,
 }: PageProps<"/[lang]/providers/[slug]">) {
   const { slug } = await params;
-  const provider = getProvider(slug);
+  const provider = await getProvider(slug);
   if (!provider) notFound();
 
   const { locale, dict } = await getDictionary();
   const labels = dict.providersPage;
-  const listings = getListingsByProvider(provider.slug);
+  const listings = await getListingsByProvider(provider.slug);
 
   return (
     <DarkPage

@@ -1,6 +1,7 @@
 import type { MapPoint } from "@/components/MapView";
 import type { CategorySlug } from "@/data/seed";
-import { getCategory, type Listing } from "@/lib/data";
+import { getCategory } from "@/lib/categories";
+import type { Listing } from "@/lib/data";
 
 export const toMapPoints = (listings: Listing[]): MapPoint[] =>
   listings.map((l) => ({

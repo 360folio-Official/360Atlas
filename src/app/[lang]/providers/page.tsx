@@ -19,7 +19,7 @@ export default async function ProvidersPage() {
       intro={dict.providersPage.intro}
     >
       <ProviderSearch
-        providers={getProviders()}
+        providers={await getProviders()}
         locale={locale}
         labels={{ searchPlaceholder, verified, empty }}
       />

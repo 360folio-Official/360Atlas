@@ -9,8 +9,8 @@ import {
   getFeaturedListings,
   getFeaturedProviders,
   getLatestListings,
+  getCategoryCounts,
   getListings,
-  getListingsByCategory,
   getProviders,
 } from "@/lib/data";
 import { toGlobePoints } from "@/lib/map-points";
@@ -21,11 +21,19 @@ export default async function HomePage() {
   const categoryName = (slug: keyof typeof dict.categories) =>
     dict.categories[slug];
 
-  const listings = getListings();
+  const [listings, providers, featured, latest, featuredProviders, counts] =
+    await Promise.all([
+      getListings(),
+      getProviders(),
+      getFeaturedListings(),
+      getLatestListings(),
+      getFeaturedProviders(),
+      getCategoryCounts(),
+    ]);
   const stats = [
     { value: listings.length, label: h.statTours },
     { value: new Set(listings.map((l) => l.country)).size, label: h.statCountries },
-    { value: getProviders().length, label: h.statCreators },
+    { value: providers.length, label: h.statCreators },
   ];
 
   const heroPoints = toGlobePoints(listings, categoryName);
@@ -133,7 +141,7 @@ export default async function HomePage() {
           href={`/${locale}/map`}
           linkLabel={h.viewAll}
         >
-          {getFeaturedListings().map((listing) => (
+          {featured.map((listing) => (
             <Slide key={listing.id}>
               <TourCard
                 listing={listing}
@@ -180,7 +188,7 @@ export default async function HomePage() {
                 {categoryName(category.slug)}
               </span>
               <span className="relative text-xs text-white/70">
-                {getListingsByCategory(category.slug).length}{" "}
+                {counts[category.slug] ?? 0}{" "}
                 {dict.categoriesPage.tours}
               </span>
             </Link>
@@ -209,7 +217,7 @@ export default async function HomePage() {
       </section>
 
       <Carousel title={h.latest}>
-        {getLatestListings().map((listing) => (
+        {latest.map((listing) => (
           <Slide key={listing.id}>
             <TourCard
               listing={listing}
@@ -225,7 +233,7 @@ export default async function HomePage() {
         href={`/${locale}/providers`}
         linkLabel={h.viewAll}
       >
-        {getFeaturedProviders().map((provider) => (
+        {featuredProviders.map((provider) => (
           <Slide key={provider.slug}>
             <ProviderCard
               provider={provider}

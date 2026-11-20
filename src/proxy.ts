@@ -22,6 +22,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Skip Next internals, the click redirect, and files with an extension.
-  matcher: ["/((?!_next|go/|.*\\..*).*)"],
+  // Skip Next internals, the click redirect, the API and files with an extension.
+  matcher: ["/((?!_next|go/|api/|.*\\..*).*)"],
 };

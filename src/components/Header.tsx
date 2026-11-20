@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { getDictionary } from "@/i18n/dictionaries";
+import { Suspense } from "react";
+import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
+import { getCurrentUser } from "@/lib/session";
 import LocaleSwitcher from "./LocaleSwitcher";
 import Logo from "./Logo";
 
@@ -29,14 +32,41 @@ export default async function Header() {
         </nav>
         <div className="ms-auto flex items-center gap-3">
           <LocaleSwitcher current={locale} label={dict.footer.language} />
-          <Link
-            href={`/${locale}/membership`}
-            className="rounded-full bg-glow px-4 py-2 text-sm font-semibold text-ink transition hover:bg-white"
-          >
-            {dict.nav.listTour}
-          </Link>
+          {/* The session is read per request, so it streams in after the shell. */}
+          <Suspense fallback={<SignedOutLinks locale={locale} dict={dict} />}>
+            <AccountLinks locale={locale} dict={dict} />
+          </Suspense>
         </div>
       </div>
     </header>
+  );
+}
+
+const ctaClass =
+  "rounded-full bg-glow px-4 py-2 text-sm font-semibold text-ink transition hover:bg-white";
+
+function SignedOutLinks({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+  return (
+    <>
+      <Link
+        href={`/${locale}/sign-in`}
+        className="whitespace-nowrap text-sm font-medium text-white/70 transition hover:text-white"
+      >
+        {dict.nav.signIn}
+      </Link>
+      <Link href={`/${locale}/sign-up`} className={ctaClass}>
+        {dict.nav.listTour}
+      </Link>
+    </>
+  );
+}
+
+async function AccountLinks({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+  const user = await getCurrentUser();
+  if (!user) return <SignedOutLinks locale={locale} dict={dict} />;
+  return (
+    <Link href={`/${locale}/account`} className={ctaClass}>
+      {dict.auth.account}
+    </Link>
   );
 }

@@ -12,15 +12,15 @@ import {
 } from "@/lib/data";
 import { toMapPoints } from "@/lib/map-points";
 
-export function generateStaticParams() {
-  return getListings().map(({ slug }) => ({ slug }));
+export async function generateStaticParams() {
+  return (await getListings()).map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[lang]/tours/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const listing = getListing(slug);
+  const listing = await getListing(slug);
   return {
     title: listing && `${listing.title}, ${listing.city}`,
   };
@@ -30,11 +30,11 @@ export default async function TourPage({
   params,
 }: PageProps<"/[lang]/tours/[slug]">) {
   const { slug } = await params;
-  const listing = getListing(slug);
+  const listing = await getListing(slug);
   if (!listing) notFound();
 
   const { locale, dict } = await getDictionary();
-  const provider = getProvider(listing.providerSlug);
+  const provider = await getProvider(listing.providerSlug);
   const facts = [
     { label: dict.tour.category, value: dict.categories[listing.category] },
     { label: dict.tour.location, value: `${listing.city}, ${listing.country}` },
@@ -106,7 +106,7 @@ export default async function TourPage({
 
       <h2 className="mt-12 text-2xl font-bold text-ink">{dict.tour.nearby}</h2>
       <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {getNearbyListings(listing).map((nearby) => (
+        {(await getNearbyListings(listing)).map((nearby) => (
           <TourCard
             key={nearby.id}
             listing={nearby}

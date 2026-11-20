@@ -14,7 +14,7 @@ export default async function MapPage() {
 
   return (
     <ExploreMap
-      points={toGlobePoints(getListings(), (slug) => dict.categories[slug])}
+      points={toGlobePoints(await getListings(), (slug) => dict.categories[slug])}
       locale={locale}
       title={dict.mapPage.title}
       intro={dict.mapPage.intro}

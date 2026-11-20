@@ -27,7 +27,7 @@ export default async function CategoryPage({
 
   const { locale, dict } = await getDictionary();
   const name = dict.categories[category.slug];
-  const listings = getListingsByCategory(category.slug);
+  const listings = await getListingsByCategory(category.slug);
 
   return (
     <DarkPage
