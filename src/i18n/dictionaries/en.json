@@ -16,12 +16,14 @@
     "listTour": "List your tours"
   },
   "home": {
-    "heroTitle": "Put your 360° work on the world map",
-    "heroText": "List your virtual tours from any platform, get a creator profile, and be found by the travellers, venues and businesses searching your area.",
+    "heroTitle": "360 Virtual Tour Discovery Platform",
+    "heroText": "Share your 360 work and discover others'.",
     "exploreMap": "Explore the map",
     "browseCategories": "Browse categories",
     "featured": "Featured tours",
     "categories": "Explore by category",
+    "categoriesHint": "Scroll to spin through every category",
+    "exploreCategory": "Explore",
     "latest": "Recently added",
     "providers": "Featured service providers",
     "viewAll": "View all",
@@ -189,13 +191,29 @@
     "tagline": "The world map of 360° virtual tours."
   },
   "categories": {
-    "hotels": "Hotels & resorts",
-    "attractions": "Attractions",
-    "museums": "Museums & galleries",
-    "venues": "Event venues",
-    "restaurants": "Restaurants & cafés",
-    "real-estate": "Real estate",
+    "aircraft-airlines": "Aircrafts & Airlines",
+    "automotive": "Automotive",
+    "business": "Business",
+    "construction": "Construction",
     "education": "Education",
-    "nature": "Nature & parks"
+    "entertainment": "Entertainment",
+    "events-festivals": "Events & Festivals",
+    "fashion": "Fashion",
+    "fine-arts": "Fine Arts",
+    "food-dining": "Food & Dining",
+    "health-beauty": "Health & Beauty",
+    "hotels-resorts": "Hotels & Resorts",
+    "industries-agriculture": "Industries & Agriculture",
+    "military": "Military",
+    "museums-history": "Museums & History",
+    "news-journalism": "News & Journalism",
+    "others": "Others",
+    "real-estate": "Real Estate",
+    "religious-holy-places": "Religious & Holy Places",
+    "service-providers": "Service Providers",
+    "shops-stores": "Shops & Stores",
+    "sports": "Sports",
+    "travel-tourism": "Travel & Tourism",
+    "venues-theaters": "Venues & Theaters"
   }
 }

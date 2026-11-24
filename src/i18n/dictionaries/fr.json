@@ -16,12 +16,14 @@
     "listTour": "Publiez vos visites"
   },
   "home": {
-    "heroTitle": "Mettez votre travail 360° sur la carte du monde",
-    "heroText": "Publiez vos visites virtuelles depuis n'importe quelle plateforme, créez votre profil et faites-vous trouver par les voyageurs, lieux et entreprises qui cherchent dans votre région.",
+    "heroTitle": "Plateforme de découverte de visites virtuelles 360",
+    "heroText": "Partagez vos créations 360 et découvrez celles des autres.",
     "exploreMap": "Explorer la carte",
     "browseCategories": "Parcourir les catégories",
     "featured": "Visites à la une",
     "categories": "Explorer par catégorie",
+    "categoriesHint": "Faites défiler pour parcourir toutes les catégories",
+    "exploreCategory": "Explorer",
     "latest": "Ajouts récents",
     "providers": "Prestataires à la une",
     "viewAll": "Tout voir",
@@ -189,13 +191,29 @@
     "tagline": "La carte du monde des visites virtuelles 360°."
   },
   "categories": {
-    "hotels": "Hôtels et resorts",
-    "attractions": "Attractions",
-    "museums": "Musées et galeries",
-    "venues": "Lieux d'événements",
-    "restaurants": "Restaurants et cafés",
-    "real-estate": "Immobilier",
+    "aircraft-airlines": "Avions et compagnies aériennes",
+    "automotive": "Automobile",
+    "business": "Entreprises",
+    "construction": "Construction",
     "education": "Éducation",
-    "nature": "Nature et parcs"
+    "entertainment": "Divertissement",
+    "events-festivals": "Événements et festivals",
+    "fashion": "Mode",
+    "fine-arts": "Beaux-arts",
+    "food-dining": "Gastronomie et restaurants",
+    "health-beauty": "Santé et beauté",
+    "hotels-resorts": "Hôtels et resorts",
+    "industries-agriculture": "Industrie et agriculture",
+    "military": "Militaire",
+    "museums-history": "Musées et histoire",
+    "news-journalism": "Actualités et journalisme",
+    "others": "Autres",
+    "real-estate": "Immobilier",
+    "religious-holy-places": "Lieux religieux et sacrés",
+    "service-providers": "Prestataires de services",
+    "shops-stores": "Boutiques et magasins",
+    "sports": "Sports",
+    "travel-tourism": "Voyages et tourisme",
+    "venues-theaters": "Salles et théâtres"
   }
 }

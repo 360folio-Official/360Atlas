@@ -11,21 +11,22 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function MapPage() {
   const { locale, dict } = await getDictionary();
+  const listings = await getListings();
+  // Only offer filters that would show something.
+  const used = new Set(listings.map((l) => l.category));
 
   return (
     <ExploreMap
-      points={toGlobePoints(await getListings(), (slug) => dict.categories[slug])}
+      points={toGlobePoints(listings, (slug) => dict.categories[slug])}
       locale={locale}
       title={dict.mapPage.title}
       intro={dict.mapPage.intro}
       openLabel={dict.tour.open}
       allLabel={dict.mapPage.allCategories}
       resultsLabel={dict.mapPage.results}
-      categories={getCategories().map(({ slug, icon }) => ({
-        slug,
-        icon,
-        name: dict.categories[slug],
-      }))}
+      categories={getCategories()
+        .filter(({ slug }) => used.has(slug))
+        .map(({ slug, icon }) => ({ slug, icon, name: dict.categories[slug] }))}
     />
   );
 }

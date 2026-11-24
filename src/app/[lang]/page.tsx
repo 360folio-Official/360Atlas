@@ -2,6 +2,7 @@ import Link from "next/link";
 import Carousel, { Slide } from "@/components/Carousel";
 import HeroGlobe from "@/components/HeroGlobe";
 import ProviderCard from "@/components/ProviderCard";
+import SpiralCategories from "@/components/spiral/SpiralCategories";
 import TourCard from "@/components/TourCard";
 import { getDictionary } from "@/i18n/dictionaries";
 import {
@@ -37,6 +38,13 @@ export default async function HomePage() {
   ];
 
   const heroPoints = toGlobePoints(listings, categoryName);
+
+  // The 8 categories with the most tours; the categories page lists them all.
+  const topCategories = getCategories()
+    .map((category, order) => ({ category, order }))
+    .sort((a, b) => (counts[b.category.slug] ?? 0) - (counts[a.category.slug] ?? 0) || a.order - b.order)
+    .slice(0, 8)
+    .map(({ category }) => category);
 
   const steps = [
     { n: "01", title: h.how1Title, text: h.how1Text },
@@ -87,7 +95,7 @@ export default async function HomePage() {
             </h1>
 
             <p
-              className="rise mt-5 max-w-lg text-base text-white/70 sm:text-lg"
+              className="rise mt-5 max-w-xl text-lg font-medium text-white/85 sm:text-2xl"
               style={{ "--d": "1200ms" } as React.CSSProperties}
             >
               {h.heroText}
@@ -153,7 +161,22 @@ export default async function HomePage() {
         </Carousel>
       </div>
 
-      <section className="mx-auto mt-16 max-w-6xl px-4">
+      <SpiralCategories
+        categories={getCategories().map((category) => ({
+          ...category,
+          name: categoryName(category.slug),
+          count: counts[category.slug] ?? 0,
+        }))}
+        locale={locale}
+        title={h.categories}
+        hint={h.categoriesHint}
+        toursLabel={dict.categoriesPage.tours}
+        exploreLabel={h.exploreCategory}
+        viewAllLabel={h.viewAll}
+      />
+
+      {/* Phones, touch screens and reduced motion get the grid instead. */}
+      <section className="spiral-hide mx-auto mt-16 max-w-6xl px-4">
         <div className="mb-5 flex items-end justify-between gap-4">
           <h2 className="text-2xl font-bold tracking-tight text-ink sm:text-3xl">
             {h.categories}
@@ -166,7 +189,7 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {getCategories().map((category) => (
+          {topCategories.map((category) => (
             <Link
               key={category.slug}
               href={`/${locale}/categories/${category.slug}`}

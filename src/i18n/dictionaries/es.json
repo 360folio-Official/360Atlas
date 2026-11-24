@@ -16,12 +16,14 @@
     "listTour": "Publica tus tours"
   },
   "home": {
-    "heroTitle": "Pon tu trabajo 360° en el mapa del mundo",
-    "heroText": "Publica tus tours virtuales de cualquier plataforma, crea tu perfil de creador y deja que te encuentren los viajeros, espacios y empresas que buscan en tu zona.",
+    "heroTitle": "Plataforma para descubrir tours virtuales 360",
+    "heroText": "Comparte tu trabajo 360 y descubre el de otros.",
     "exploreMap": "Explorar el mapa",
     "browseCategories": "Ver categorías",
     "featured": "Tours destacados",
     "categories": "Explora por categoría",
+    "categoriesHint": "Desplázate para recorrer todas las categorías",
+    "exploreCategory": "Explorar",
     "latest": "Añadidos recientemente",
     "providers": "Proveedores destacados",
     "viewAll": "Ver todo",
@@ -189,13 +191,29 @@
     "tagline": "El mapa mundial de los tours virtuales 360°."
   },
   "categories": {
-    "hotels": "Hoteles y resorts",
-    "attractions": "Atracciones",
-    "museums": "Museos y galerías",
-    "venues": "Espacios para eventos",
-    "restaurants": "Restaurantes y cafés",
-    "real-estate": "Inmuebles",
+    "aircraft-airlines": "Aviones y aerolíneas",
+    "automotive": "Automoción",
+    "business": "Negocios",
+    "construction": "Construcción",
     "education": "Educación",
-    "nature": "Naturaleza y parques"
+    "entertainment": "Entretenimiento",
+    "events-festivals": "Eventos y festivales",
+    "fashion": "Moda",
+    "fine-arts": "Bellas artes",
+    "food-dining": "Comida y restaurantes",
+    "health-beauty": "Salud y belleza",
+    "hotels-resorts": "Hoteles y resorts",
+    "industries-agriculture": "Industria y agricultura",
+    "military": "Militar",
+    "museums-history": "Museos e historia",
+    "news-journalism": "Noticias y periodismo",
+    "others": "Otros",
+    "real-estate": "Inmuebles",
+    "religious-holy-places": "Lugares religiosos y sagrados",
+    "service-providers": "Proveedores de servicios",
+    "shops-stores": "Tiendas y comercios",
+    "sports": "Deportes",
+    "travel-tourism": "Viajes y turismo",
+    "venues-theaters": "Recintos y teatros"
   }
 }

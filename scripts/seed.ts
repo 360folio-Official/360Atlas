@@ -89,6 +89,14 @@ async function main() {
         .values(values)
         .onDuplicateKeyUpdate({ set: values });
     }
+
+    // Drop categories that left the list, unless a tour still uses one.
+    const keep = categories.map((c) => c.slug);
+    await tx.execute(sql`
+      delete from ${schema.categories}
+      where ${schema.categories.slug} not in (${sql.join(keep.map((s) => sql`${s}`), sql`, `)})
+        and ${schema.categories.slug} not in (select ${schema.listings.categorySlug} from ${schema.listings})
+    `);
   });
 
   const [{ count }] = await db

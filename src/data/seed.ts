@@ -2,14 +2,30 @@
 // Every listing here is a placeholder: tour URLs point at example.com.
 
 export type CategorySlug =
-  | "hotels"
-  | "attractions"
-  | "museums"
-  | "venues"
-  | "restaurants"
-  | "real-estate"
+  | "aircraft-airlines"
+  | "automotive"
+  | "business"
+  | "construction"
   | "education"
-  | "nature";
+  | "entertainment"
+  | "events-festivals"
+  | "fashion"
+  | "fine-arts"
+  | "food-dining"
+  | "health-beauty"
+  | "hotels-resorts"
+  | "industries-agriculture"
+  | "military"
+  | "museums-history"
+  | "news-journalism"
+  | "others"
+  | "real-estate"
+  | "religious-holy-places"
+  | "service-providers"
+  | "shops-stores"
+  | "sports"
+  | "travel-tourism"
+  | "venues-theaters";
 
 export type Category = { slug: CategorySlug; icon: string; hue: number };
 
@@ -52,14 +68,30 @@ export type Listing = {
 };
 
 export const categories: Category[] = [
-  { slug: "hotels", icon: "🏨", hue: 200 },
-  { slug: "attractions", icon: "🎡", hue: 280 },
-  { slug: "museums", icon: "🏛️", hue: 35 },
-  { slug: "venues", icon: "🎪", hue: 330 },
-  { slug: "restaurants", icon: "🍽️", hue: 10 },
+  { slug: "aircraft-airlines", icon: "✈️", hue: 205 },
+  { slug: "automotive", icon: "🚗", hue: 0 },
+  { slug: "business", icon: "💼", hue: 225 },
+  { slug: "construction", icon: "🏗️", hue: 40 },
+  { slug: "education", icon: "🎓", hue: 245 },
+  { slug: "entertainment", icon: "🎬", hue: 300 },
+  { slug: "events-festivals", icon: "🎉", hue: 320 },
+  { slug: "fashion", icon: "👗", hue: 340 },
+  { slug: "fine-arts", icon: "🎨", hue: 270 },
+  { slug: "food-dining", icon: "🍽️", hue: 15 },
+  { slug: "health-beauty", icon: "💆", hue: 170 },
+  { slug: "hotels-resorts", icon: "🏨", hue: 195 },
+  { slug: "industries-agriculture", icon: "🏭", hue: 90 },
+  { slug: "military", icon: "🎖️", hue: 75 },
+  { slug: "museums-history", icon: "🏛️", hue: 30 },
+  { slug: "news-journalism", icon: "📰", hue: 215 },
+  { slug: "others", icon: "✨", hue: 260 },
   { slug: "real-estate", icon: "🏠", hue: 150 },
-  { slug: "education", icon: "🎓", hue: 240 },
-  { slug: "nature", icon: "🌿", hue: 120 },
+  { slug: "religious-holy-places", icon: "🛐", hue: 50 },
+  { slug: "service-providers", icon: "🧰", hue: 185 },
+  { slug: "shops-stores", icon: "🛍️", hue: 355 },
+  { slug: "sports", icon: "⚽", hue: 130 },
+  { slug: "travel-tourism", icon: "🧳", hue: 110 },
+  { slug: "venues-theaters", icon: "🎭", hue: 285 },
 ];
 
 export const providers: Provider[] = [
@@ -156,26 +188,26 @@ type Row = [
 ];
 
 const rows: Row[] = [
-  ["Marina Skyline Hotel", "hotels", "Dubai", "United Arab Emirates", 25.0805, 55.1403, "Matterport", "gulf-panorama-studio", true],
-  ["Old Town Heritage House", "museums", "Dubai", "United Arab Emirates", 25.2637, 55.2972, "3DVista", "gulf-panorama-studio", false],
-  ["Creekside Banquet Hall", "venues", "Dubai", "United Arab Emirates", 25.2285, 55.3273, "Matterport", "gulf-panorama-studio", false],
+  ["Marina Skyline Hotel", "hotels-resorts", "Dubai", "United Arab Emirates", 25.0805, 55.1403, "Matterport", "gulf-panorama-studio", true],
+  ["Old Town Heritage House", "museums-history", "Dubai", "United Arab Emirates", 25.2637, 55.2972, "3DVista", "gulf-panorama-studio", false],
+  ["Creekside Banquet Hall", "venues-theaters", "Dubai", "United Arab Emirates", 25.2285, 55.3273, "Matterport", "gulf-panorama-studio", false],
   ["Palm View Residence", "real-estate", "Dubai", "United Arab Emirates", 25.1124, 55.139, "Matterport", "gulf-panorama-studio", true],
-  ["Riverside Maritime Gallery", "museums", "London", "United Kingdom", 51.4826, -0.0077, "Kuula", "thames-360", true],
-  ["Garden Square Townhouse Hotel", "hotels", "London", "United Kingdom", 51.4975, -0.1687, "Matterport", "thames-360", false],
-  ["Brick Lane Supper Club", "restaurants", "London", "United Kingdom", 51.5215, -0.0716, "Kuula", "thames-360", false],
-  ["Royal Park Glasshouse", "nature", "London", "United Kingdom", 51.4787, -0.2956, "Kuula", "thames-360", false],
-  ["Left Bank Boutique Hotel", "hotels", "Paris", "France", 48.8534, 2.3338, "3DVista", "atelier-immersif", true],
-  ["Canal Quarter Bistro", "restaurants", "Paris", "France", 48.8721, 2.3655, "Panoee", "atelier-immersif", false],
-  ["Marais Contemporary Art Space", "museums", "Paris", "France", 48.8598, 2.3622, "3DVista", "atelier-immersif", true],
-  ["Gothic Quarter Rooftop Venue", "venues", "Barcelona", "Spain", 41.3833, 2.1777, "CloudPano", "iberia-virtual", true],
-  ["Harbour Aquarium Walkthrough", "attractions", "Barcelona", "Spain", 41.3766, 2.1843, "Kuula", "iberia-virtual", false],
+  ["Riverside Maritime Gallery", "museums-history", "London", "United Kingdom", 51.4826, -0.0077, "Kuula", "thames-360", true],
+  ["Garden Square Townhouse Hotel", "hotels-resorts", "London", "United Kingdom", 51.4975, -0.1687, "Matterport", "thames-360", false],
+  ["Brick Lane Supper Club", "food-dining", "London", "United Kingdom", 51.5215, -0.0716, "Kuula", "thames-360", false],
+  ["Royal Park Glasshouse", "travel-tourism", "London", "United Kingdom", 51.4787, -0.2956, "Kuula", "thames-360", false],
+  ["Left Bank Boutique Hotel", "hotels-resorts", "Paris", "France", 48.8534, 2.3338, "3DVista", "atelier-immersif", true],
+  ["Canal Quarter Bistro", "food-dining", "Paris", "France", 48.8721, 2.3655, "Panoee", "atelier-immersif", false],
+  ["Marais Contemporary Art Space", "fine-arts", "Paris", "France", 48.8598, 2.3622, "3DVista", "atelier-immersif", true],
+  ["Gothic Quarter Rooftop Venue", "venues-theaters", "Barcelona", "Spain", 41.3833, 2.1777, "CloudPano", "iberia-virtual", true],
+  ["Harbour Aquarium Walkthrough", "travel-tourism", "Barcelona", "Spain", 41.3766, 2.1843, "Kuula", "iberia-virtual", false],
   ["Costa Beachfront Villa", "real-estate", "Sitges", "Spain", 41.2372, 1.8059, "CloudPano", "iberia-virtual", false],
   ["Midtown Loft Apartment", "real-estate", "New York", "United States", 40.7549, -73.984, "Matterport", "hudson-spaces", false],
   ["Brooklyn Design College", "education", "New York", "United States", 40.6895, -73.9637, "Matterport", "hudson-spaces", true],
-  ["Harbor Observation Deck", "attractions", "New York", "United States", 40.7033, -74.017, "Matterport", "hudson-spaces", true],
-  ["Shinjuku Garden Ryokan", "hotels", "Tokyo", "Japan", 35.6852, 139.7101, "Kuula", "sakura-vr", true],
-  ["Asakusa Temple Grounds", "attractions", "Tokyo", "Japan", 35.7148, 139.7967, "Google Street View", "sakura-vr", false],
-  ["Riverside Cherry Blossom Park", "nature", "Tokyo", "Japan", 35.6467, 139.6982, "Kuula", "sakura-vr", true],
+  ["Harbor Observation Deck", "travel-tourism", "New York", "United States", 40.7033, -74.017, "Matterport", "hudson-spaces", true],
+  ["Shinjuku Garden Ryokan", "hotels-resorts", "Tokyo", "Japan", 35.6852, 139.7101, "Kuula", "sakura-vr", true],
+  ["Asakusa Temple Grounds", "religious-holy-places", "Tokyo", "Japan", 35.7148, 139.7967, "Google Street View", "sakura-vr", false],
+  ["Riverside Cherry Blossom Park", "travel-tourism", "Tokyo", "Japan", 35.6467, 139.6982, "Kuula", "sakura-vr", true],
 ];
 
 const slugify = (text: string) =>

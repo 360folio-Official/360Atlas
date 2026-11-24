@@ -16,12 +16,14 @@
     "listTour": "أضف جولاتك"
   },
   "home": {
-    "heroTitle": "ضع أعمالك بزاوية 360° على خريطة العالم",
-    "heroText": "اعرض جولاتك الافتراضية من أي منصة، واحصل على ملف تعريفي، ودع المسافرين والأماكن والشركات التي تبحث في منطقتك يعثرون عليك.",
+    "heroTitle": "منصة اكتشاف الجولات الافتراضية 360",
+    "heroText": "شارك أعمالك بتقنية 360 واكتشف أعمال الآخرين.",
     "exploreMap": "استكشف الخريطة",
     "browseCategories": "تصفح التصنيفات",
     "featured": "جولات مميزة",
     "categories": "استكشف حسب التصنيف",
+    "categoriesHint": "مرّر للتنقل بين جميع التصنيفات",
+    "exploreCategory": "استكشف",
     "latest": "أضيفت حديثاً",
     "providers": "مزودو خدمات مميزون",
     "viewAll": "عرض الكل",
@@ -189,13 +191,29 @@
     "tagline": "خريطة العالم للجولات الافتراضية بزاوية 360°."
   },
   "categories": {
-    "hotels": "فنادق ومنتجعات",
-    "attractions": "معالم سياحية",
-    "museums": "متاحف ومعارض",
-    "venues": "قاعات مناسبات",
-    "restaurants": "مطاعم ومقاهٍ",
-    "real-estate": "عقارات",
+    "aircraft-airlines": "طائرات وشركات طيران",
+    "automotive": "سيارات",
+    "business": "أعمال",
+    "construction": "بناء وتشييد",
     "education": "تعليم",
-    "nature": "طبيعة وحدائق"
+    "entertainment": "ترفيه",
+    "events-festivals": "فعاليات ومهرجانات",
+    "fashion": "أزياء",
+    "fine-arts": "فنون جميلة",
+    "food-dining": "طعام ومطاعم",
+    "health-beauty": "صحة وجمال",
+    "hotels-resorts": "فنادق ومنتجعات",
+    "industries-agriculture": "صناعة وزراعة",
+    "military": "عسكري",
+    "museums-history": "متاحف وتاريخ",
+    "news-journalism": "أخبار وصحافة",
+    "others": "أخرى",
+    "real-estate": "عقارات",
+    "religious-holy-places": "أماكن دينية ومقدسة",
+    "service-providers": "مزوّدو خدمات",
+    "shops-stores": "متاجر ومحلات",
+    "sports": "رياضة",
+    "travel-tourism": "سفر وسياحة",
+    "venues-theaters": "قاعات ومسارح"
   }
 }
