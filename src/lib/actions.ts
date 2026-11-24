@@ -12,6 +12,7 @@ import { auth } from "./auth";
 import { getCategory } from "./categories";
 import { platformOptions, tourPlatformOptions } from "./platforms";
 import { getCurrentUser } from "./session";
+import { deleteThumbnail, saveThumbnail } from "./uploads";
 
 // Errors are returned as keys into the dictionary so the form can translate them.
 export type FormState = { error?: string; ok?: boolean; slug?: string };
@@ -281,6 +282,29 @@ export async function saveTour(_prev: FormState, form: FormData): Promise<FormSt
     .limit(1);
   if (sameUrl) return { error: "duplicateUrl" };
 
+  // When editing, the tour must be this member's; keep its old thumbnail
+  // so it can be removed once replaced.
+  let oldThumbnail: string | null = null;
+  if (id) {
+    const [own] = await db
+      .select({ thumbnailPath: listings.thumbnailPath })
+      .from(listings)
+      .where(and(eq(listings.id, id), eq(listings.memberId, memberId)))
+      .limit(1);
+    if (!own) return { error: "notFound" };
+    oldThumbnail = own.thumbnailPath;
+  }
+
+  // A new image replaces the old one; "removeThumbnail" clears it.
+  const upload = form.get("thumbnail");
+  let newThumbnail: string | null = null;
+  if (upload instanceof File && upload.size > 0) {
+    const saved = await saveThumbnail(upload);
+    if ("error" in saved) return { error: saved.error };
+    newThumbnail = saved.stored;
+  }
+  const removeThumbnail = form.get("removeThumbnail") === "1";
+
   const values = {
     title,
     tourUrl,
@@ -290,15 +314,16 @@ export async function saveTour(_prev: FormState, form: FormData): Promise<FormSt
     country,
     lat: Math.round(lat * 1e6) / 1e6,
     lng: Math.round(lng * 1e6) / 1e6,
+    ...(newThumbnail || removeThumbnail ? { thumbnailPath: newThumbnail } : {}),
   };
 
   try {
     if (id) {
-      const [result] = await db
+      await db
         .update(listings)
         .set(values)
         .where(and(eq(listings.id, id), eq(listings.memberId, memberId)));
-      if (!result.affectedRows) return { error: "notFound" };
+      if (newThumbnail || removeThumbnail) await deleteThumbnail(oldThumbnail);
     } else {
       const base = slugify(`${title} ${city}`, "tour");
       const taken = new Set(
@@ -317,6 +342,8 @@ export async function saveTour(_prev: FormState, form: FormData): Promise<FormSt
       });
     }
   } catch (error) {
+    // Nothing points at the new image if saving failed.
+    await deleteThumbnail(newThumbnail);
     if (isDuplicate(error)) return { error: "duplicateUrl" };
     console.error(error);
     return { error: "generic" };
@@ -331,10 +358,18 @@ export async function deleteTour(form: FormData) {
   const memberId = await currentMemberId(locale);
   const id = Number(form.get("id"));
   if (memberId && Number.isSafeInteger(id)) {
-    await db
-      .delete(listings)
-      .where(and(eq(listings.id, id), eq(listings.memberId, memberId)));
-    updateTag("listings");
+    const [own] = await db
+      .select({ thumbnailPath: listings.thumbnailPath })
+      .from(listings)
+      .where(and(eq(listings.id, id), eq(listings.memberId, memberId)))
+      .limit(1);
+    if (own) {
+      await db
+        .delete(listings)
+        .where(and(eq(listings.id, id), eq(listings.memberId, memberId)));
+      await deleteThumbnail(own.thumbnailPath);
+      updateTag("listings");
+    }
   }
   redirect(`/${locale}/account#tours`);
 }

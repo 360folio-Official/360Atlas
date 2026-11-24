@@ -68,6 +68,8 @@ export type Listing = {
   addedAt: string;
   // Sample tours loaded by the seed script, not added by a member.
   sample?: boolean;
+  // Address of the uploaded thumbnail, if the member added one.
+  thumbnail?: string;
 };
 
 export const categories: Category[] = [

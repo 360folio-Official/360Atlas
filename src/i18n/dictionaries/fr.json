@@ -254,6 +254,14 @@
     "needPlatform": "Choisissez la plateforme.",
     "needLocation": "Cliquez sur la carte pour indiquer où se trouve la visite.",
     "needPlace": "Saisissez la ville et le pays.",
-    "notFound": "Cette visite est introuvable dans votre compte."
+    "notFound": "Cette visite est introuvable dans votre compte.",
+    "thumbnail": "Vignette",
+    "thumbnailHint": "Une image de la visite en JPEG, PNG ou WebP ; elle est recadrée au format 16:10.",
+    "chooseImage": "Choisir une image",
+    "changeImage": "Changer l'image",
+    "removeImage": "Retirer l'image",
+    "preparingImage": "Préparation de l'image…",
+    "badImage": "Ce fichier n'a pas pu être lu comme une image. Utilisez JPEG, PNG ou WebP.",
+    "imageTooLarge": "Cette image est trop lourde. Essayez-en une plus petite."
   }
 }

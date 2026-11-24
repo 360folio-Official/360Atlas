@@ -1,9 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { getCategory } from "@/lib/categories";
 import type { Listing } from "@/lib/data";
 
-// Placeholder artwork until real thumbnails are stored with each listing.
+// The uploaded thumbnail, or category artwork when the tour has none.
 export function TourThumb({
   listing,
   className = "",
@@ -20,9 +21,21 @@ export function TourThumb({
         background: `linear-gradient(135deg, hsl(${hue} 55% 42%), hsl(${(hue + 40) % 360} 60% 24%))`,
       }}
     >
-      <span className="text-5xl drop-shadow" aria-hidden>
-        {category?.icon}
-      </span>
+      {listing.thumbnail ? (
+        // Already resized when uploaded, so served as is.
+        <Image
+          src={listing.thumbnail}
+          alt=""
+          fill
+          unoptimized
+          sizes="(min-width: 1024px) 33vw, 100vw"
+          className="object-cover"
+        />
+      ) : (
+        <span className="text-5xl drop-shadow" aria-hidden>
+          {category?.icon}
+        </span>
+      )}
       <span className="absolute end-2 top-2 rounded-full bg-black/45 px-2 py-0.5 text-xs font-semibold text-white">
         360°
       </span>

@@ -111,9 +111,19 @@ async function MyTours({
         const category = getCategory(tour.category);
         return (
           <li key={tour.id} className="flex flex-wrap items-center gap-x-5 gap-y-2 px-5 py-4">
-            <span className="text-2xl" aria-hidden>
-              {category?.icon}
-            </span>
+            {tour.thumbnail ? (
+              // eslint-disable-next-line @next/next/no-img-element -- small, already resized
+              <img
+                src={tour.thumbnail}
+                alt=""
+                loading="lazy"
+                className="h-10 w-16 rounded-lg object-cover"
+              />
+            ) : (
+              <span className="flex h-10 w-16 items-center justify-center rounded-lg bg-white/5 text-2xl" aria-hidden>
+                {category?.icon}
+              </span>
+            )}
             <div className="min-w-0 flex-1">
               <p className="truncate font-semibold">{tour.title}</p>
               <p className="text-sm text-white/55">

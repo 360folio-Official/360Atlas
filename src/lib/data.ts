@@ -17,6 +17,7 @@ export type { Category, CategorySlug, Listing, Provider } from "@/data/seed";
 export { distanceKm } from "./geo";
 export { getCategories, getCategory } from "./categories";
 import { distanceKm } from "./geo";
+import { thumbnailUrl } from "./uploads";
 
 // ---------------------------------------------------------------------------
 // Listings
@@ -36,6 +37,7 @@ const listingColumns = {
   providerSlug: members.slug,
   featured: listingsTable.featured,
   seeded: listingsTable.seeded,
+  thumbnailPath: listingsTable.thumbnailPath,
   createdAt: listingsTable.createdAt,
 };
 
@@ -53,6 +55,7 @@ type ListingRow = {
   providerSlug: string | null;
   featured: boolean;
   seeded: boolean;
+  thumbnailPath: string | null;
   createdAt: Date;
 };
 
@@ -71,6 +74,7 @@ const toListing = (row: ListingRow): Listing => ({
   featured: row.featured,
   addedAt: row.createdAt.toISOString().slice(0, 10),
   sample: row.seeded,
+  thumbnail: thumbnailUrl(row.thumbnailPath),
 });
 
 // Live listings with coordinates: everything the public map and pages show.

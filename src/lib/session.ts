@@ -6,6 +6,7 @@ import { connection } from "next/server";
 import { db } from "@/db";
 import { listings, members, serviceAreas } from "@/db/schema";
 import { auth } from "./auth";
+import { thumbnailUrl } from "./uploads";
 
 export type CurrentUser = { id: string; name: string; email: string; role: string };
 
@@ -91,6 +92,7 @@ export type MemberTour = {
   lat: number | null;
   lng: number | null;
   status: "pending" | "live" | "broken_link" | "hidden";
+  thumbnail: string | undefined;
 };
 
 const memberTourColumns = {
@@ -105,12 +107,19 @@ const memberTourColumns = {
   lat: listings.lat,
   lng: listings.lng,
   status: listings.status,
+  thumbnailPath: listings.thumbnailPath,
 };
 
-const toMemberTour = (
-  row: Omit<MemberTour, "city" | "country"> & { city: string | null; country: string | null },
-): MemberTour => ({
+const toMemberTour = ({
+  thumbnailPath,
+  ...row
+}: Omit<MemberTour, "city" | "country" | "thumbnail"> & {
+  city: string | null;
+  country: string | null;
+  thumbnailPath: string | null;
+}): MemberTour => ({
   ...row,
+  thumbnail: thumbnailUrl(thumbnailPath),
   city: row.city ?? "",
   country: row.country ?? "",
   lat: row.lat === null ? null : Number(row.lat),

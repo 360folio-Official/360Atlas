@@ -254,6 +254,14 @@
     "needPlatform": "Choose the platform.",
     "needLocation": "Click the map to mark where the tour is.",
     "needPlace": "Enter the city and country.",
-    "notFound": "That tour wasn't found in your account."
+    "notFound": "That tour wasn't found in your account.",
+    "thumbnail": "Thumbnail",
+    "thumbnailHint": "A still from the tour. JPEG, PNG or WebP; it's cropped to a 16:10 picture.",
+    "chooseImage": "Choose image",
+    "changeImage": "Change image",
+    "removeImage": "Remove image",
+    "preparingImage": "Preparing image…",
+    "badImage": "That file couldn't be read as an image. Use a JPEG, PNG or WebP.",
+    "imageTooLarge": "That image is too large. Try a smaller one."
   }
 }

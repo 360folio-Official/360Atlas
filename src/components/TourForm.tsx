@@ -1,11 +1,12 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { startTransition, useActionState, useEffect, useState } from "react";
 import { deleteTour, saveTour, type FormState } from "@/lib/actions";
 import { detectPlatform } from "@/lib/platforms";
 import type { MemberTour } from "@/lib/session";
-import { inputClass, keepValues } from "./AuthForm";
+import { inputClass } from "./AuthForm";
 import LocationPicker from "./LocationPicker";
+import { makeThumbnail } from "./thumbnail-image";
 
 type Labels = Record<
   | "title"
@@ -33,6 +34,14 @@ type Labels = Record<
   | "needLocation"
   | "needPlace"
   | "notFound"
+  | "thumbnail"
+  | "thumbnailHint"
+  | "chooseImage"
+  | "changeImage"
+  | "removeImage"
+  | "preparingImage"
+  | "badImage"
+  | "imageTooLarge"
   | "generic",
   string
 >;
@@ -69,11 +78,55 @@ export default function TourForm({
   const [state, action, pending] = useActionState<FormState, FormData>(saveTour, {});
   const [platform, setPlatform] = useState(tour?.platform ?? "");
 
+  // The resized image waiting to be uploaded, and what the preview shows.
+  const [thumbnail, setThumbnail] = useState<Blob | null>(null);
+  const [preview, setPreview] = useState(tour?.thumbnail);
+  const [removed, setRemoved] = useState(false);
+  const [preparing, setPreparing] = useState(false);
+  const [imageError, setImageError] = useState<string | null>(null);
+
+  // Free the previous preview's memory when it changes.
+  useEffect(() => {
+    if (!preview?.startsWith("blob:")) return;
+    return () => URL.revokeObjectURL(preview);
+  }, [preview]);
+
+  const pickImage = async (file: File | undefined) => {
+    if (!file) return;
+    setImageError(null);
+    setPreparing(true);
+    try {
+      const blob = await makeThumbnail(file);
+      setThumbnail(blob);
+      setPreview(URL.createObjectURL(blob));
+      setRemoved(false);
+    } catch {
+      setImageError(labels.badImage);
+    } finally {
+      setPreparing(false);
+    }
+  };
+
+  const removeImage = () => {
+    setThumbnail(null);
+    setPreview(undefined);
+    setRemoved(Boolean(tour?.thumbnail));
+  };
+
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    if (thumbnail)
+      data.set("thumbnail", thumbnail, thumbnail.type === "image/webp" ? "thumbnail.webp" : "thumbnail.jpg");
+    if (removed) data.set("removeThumbnail", "1");
+    startTransition(() => action(data));
+  };
+
   return (
     <>
       {/* method="post" keeps the values out of the address bar if someone
           submits before the page's scripts have loaded. */}
-      <form method="post" onSubmit={keepValues(action)} className="grid gap-8 lg:grid-cols-2">
+      <form method="post" onSubmit={submit} className="grid gap-8 lg:grid-cols-2">
         <input type="hidden" name="locale" value={locale} />
         {tour && <input type="hidden" name="id" value={tour.id} />}
 
@@ -143,6 +196,54 @@ export default function TourForm({
               ))}
             </select>
           </Field>
+
+          <div>
+            <span className="mb-1.5 block text-sm text-white/70">{labels.thumbnail}</span>
+            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+              {preview ? (
+                // eslint-disable-next-line @next/next/no-img-element -- a local preview, not a page image
+                <img src={preview} alt="" className="h-full w-full object-cover" />
+              ) : (
+                <span className="absolute inset-0 flex items-center justify-center text-4xl text-white/20" aria-hidden>
+                  🖼️
+                </span>
+              )}
+              {preparing && (
+                <span className="absolute inset-0 flex items-center justify-center bg-ink/70 text-sm text-white/80">
+                  {labels.preparingImage}
+                </span>
+              )}
+            </div>
+            <div className="mt-3 flex flex-wrap items-center gap-3">
+              <label className="cursor-pointer rounded-full border border-white/20 px-4 py-1.5 text-sm text-white/80 transition hover:border-white hover:text-white focus-within:ring-2 focus-within:ring-glow">
+                {preview ? labels.changeImage : labels.chooseImage}
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  className="sr-only"
+                  onChange={(event) => {
+                    void pickImage(event.target.files?.[0]);
+                    event.target.value = "";
+                  }}
+                />
+              </label>
+              {preview && (
+                <button
+                  type="button"
+                  onClick={removeImage}
+                  className="text-sm text-white/55 underline-offset-4 hover:text-white hover:underline"
+                >
+                  {labels.removeImage}
+                </button>
+              )}
+            </div>
+            <span className="mt-1.5 block text-xs text-white/45">{labels.thumbnailHint}</span>
+            {imageError && (
+              <p role="alert" className="mt-2 text-sm text-red-200">
+                {imageError}
+              </p>
+            )}
+          </div>
         </div>
 
         <div className="space-y-5">
@@ -178,7 +279,7 @@ export default function TourForm({
         <div className="flex flex-wrap items-center gap-4 lg:col-span-2">
           <button
             type="submit"
-            disabled={pending}
+            disabled={pending || preparing}
             className="rounded-full bg-glow px-8 py-3 font-semibold text-ink transition hover:bg-white disabled:opacity-60"
           >
             {pending ? labels.saving : labels.save}
