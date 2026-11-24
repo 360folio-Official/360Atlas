@@ -19,7 +19,7 @@ import {
 } from "@/lib/map-style";
 import type { GlobePoint } from "@/lib/map-points";
 
-setWorkerUrl("/maplibre-gl-worker.mjs");
+setWorkerUrl("/maplibre-gl-worker.js");
 
 export type HeroPoint = GlobePoint;
 

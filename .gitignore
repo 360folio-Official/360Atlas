@@ -41,4 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # copied from node_modules by `npm run copy-map-worker`
-/public/maplibre-gl-worker.mjs
+/public/maplibre-gl-worker.js

@@ -13,7 +13,7 @@ import { DARK_STYLE_URL, PIN, tintStyle } from "@/lib/map-style";
 
 // The bundler can't resolve MapLibre's worker on its own, so it is served from
 // public/ (copied there by `npm run copy-map-worker`).
-setWorkerUrl("/maplibre-gl-worker.mjs");
+setWorkerUrl("/maplibre-gl-worker.js");
 
 export type MapPoint = {
   slug: string;

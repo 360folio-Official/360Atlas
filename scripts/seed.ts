@@ -4,6 +4,7 @@
 import { drizzle } from "drizzle-orm/mysql2";
 import { eq, sql } from "drizzle-orm";
 import mysql from "mysql2/promise";
+import { dbCredentials } from "../src/db/connection";
 import * as schema from "../src/db/schema";
 import { categories, listings, providers } from "../src/data/seed";
 
@@ -15,7 +16,7 @@ try {
 
 async function main() {
   const connection = await mysql.createConnection({
-    uri: process.env.DATABASE_URL,
+    ...dbCredentials(),
     timezone: "Z",
   });
   const db = drizzle(connection, { schema, mode: "default" });

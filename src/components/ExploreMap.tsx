@@ -20,7 +20,7 @@ import {
   zoomForDiameter,
 } from "@/lib/map-style";
 
-setWorkerUrl("/maplibre-gl-worker.mjs");
+setWorkerUrl("/maplibre-gl-worker.js");
 
 type Props = {
   points: GlobePoint[];

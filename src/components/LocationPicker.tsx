@@ -10,7 +10,7 @@ import {
 import "maplibre-gl/dist/maplibre-gl.css";
 import { DARK_STYLE_URL, PIN, tintStyle } from "@/lib/map-style";
 
-setWorkerUrl("/maplibre-gl-worker.mjs");
+setWorkerUrl("/maplibre-gl-worker.js");
 
 type Point = { lat: number; lng: number };
 
