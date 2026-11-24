@@ -182,8 +182,7 @@
     "needLocation": "Cliquez sur la carte pour indiquer où vous travaillez.",
     "needName": "Saisissez le nom de votre entreprise.",
     "badWebsite": "Saisissez une adresse complète commençant par https://",
-    "toursTitle": "Vos visites",
-    "toursSoon": "L'ajout et la modification des visites arrivent ensuite."
+    "toursTitle": "Vos visites"
   },
   "footer": {
     "rights": "Tous droits réservés.",
@@ -215,5 +214,46 @@
     "sports": "Sports",
     "travel-tourism": "Voyages et tourisme",
     "venues-theaters": "Salles et théâtres"
+  },
+  "tours": {
+    "needProfile": "Enregistrez d'abord votre profil ci-dessus, puis vous pourrez ajouter des visites.",
+    "none": "Vous n'avez encore ajouté aucune visite.",
+    "add": "Ajouter une visite",
+    "newTitle": "Ajouter une visite",
+    "editTitle": "Modifier la visite",
+    "intro": "Publiez une visite 360° que vous avez réalisée ou qui vous appartient. Elle apparaît sur la carte, dans sa catégorie et sur votre profil.",
+    "back": "Retour à mon compte",
+    "title": "Titre de la visite",
+    "titleHint": "ex. Hôtel Marina Skyline",
+    "url": "Lien de la visite",
+    "urlHint": "Le lien public de partage de la visite, commençant par https://",
+    "category": "Catégorie",
+    "choose": "Choisir…",
+    "platform": "Plateforme",
+    "other": "Autre",
+    "whereTitle": "Où se trouve-t-elle ?",
+    "whereHint": "Cliquez sur la carte à l'endroit du lieu. L'épingle de la visite y sera placée.",
+    "city": "Ville",
+    "country": "Pays",
+    "save": "Enregistrer la visite",
+    "saving": "Enregistrement…",
+    "view": "Voir",
+    "edit": "Modifier",
+    "delete": "Supprimer la visite",
+    "deleteConfirm": "Supprimer cette visite ? Cette action est définitive.",
+    "status": {
+      "live": "En ligne",
+      "pending": "En cours de vérification",
+      "hidden": "Masquée",
+      "broken_link": "Lien cassé"
+    },
+    "needTitle": "Saisissez un titre pour la visite.",
+    "badUrl": "Saisissez le lien complet de la visite, commençant par https://",
+    "duplicateUrl": "Ce lien de visite figure déjà sur 360atlas.",
+    "needCategory": "Choisissez une catégorie.",
+    "needPlatform": "Choisissez la plateforme.",
+    "needLocation": "Cliquez sur la carte pour indiquer où se trouve la visite.",
+    "needPlace": "Saisissez la ville et le pays.",
+    "notFound": "Cette visite est introuvable dans votre compte."
   }
 }

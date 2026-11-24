@@ -35,6 +35,7 @@ const listingColumns = {
   tourUrl: listingsTable.tourUrl,
   providerSlug: members.slug,
   featured: listingsTable.featured,
+  seeded: listingsTable.seeded,
   createdAt: listingsTable.createdAt,
 };
 
@@ -51,6 +52,7 @@ type ListingRow = {
   tourUrl: string;
   providerSlug: string | null;
   featured: boolean;
+  seeded: boolean;
   createdAt: Date;
 };
 
@@ -68,6 +70,7 @@ const toListing = (row: ListingRow): Listing => ({
   providerSlug: row.providerSlug ?? "",
   featured: row.featured,
   addedAt: row.createdAt.toISOString().slice(0, 10),
+  sample: row.seeded,
 });
 
 // Live listings with coordinates: everything the public map and pages show.

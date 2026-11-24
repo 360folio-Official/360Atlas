@@ -56,7 +56,7 @@ export default function ProfileForm({
   const slug = state.slug ?? profile?.slug;
 
   return (
-    <form onSubmit={keepValues(action)} className="grid gap-8 lg:grid-cols-2">
+    <form method="post" onSubmit={keepValues(action)} className="grid gap-8 lg:grid-cols-2">
       <input type="hidden" name="locale" value={locale} />
 
       <div className="space-y-5">

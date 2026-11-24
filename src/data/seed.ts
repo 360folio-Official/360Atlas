@@ -35,7 +35,8 @@ export type Platform =
   | "3DVista"
   | "CloudPano"
   | "Google Street View"
-  | "Panoee";
+  | "Panoee"
+  | "Other";
 
 export type Provider = {
   slug: string;
@@ -65,6 +66,8 @@ export type Listing = {
   providerSlug: string;
   featured: boolean;
   addedAt: string;
+  // Sample tours loaded by the seed script, not added by a member.
+  sample?: boolean;
 };
 
 export const categories: Category[] = [

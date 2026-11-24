@@ -14,7 +14,7 @@ setWorkerUrl("/maplibre-gl-worker.js");
 
 type Point = { lat: number; lng: number };
 
-// A circle of the given radius as a polygon, so the service area shows on the map.
+// The pin, plus a circle of the given radius (if any) so a service area shows.
 function circle({ lat, lng }: Point, radiusKm: number) {
   const steps = 64;
   const coords: [number, number][] = [];
@@ -24,14 +24,15 @@ function circle({ lat, lng }: Point, radiusKm: number) {
     const t = (i / steps) * 2 * Math.PI;
     coords.push([lng + dLng * Math.cos(t), lat + dLat * Math.sin(t)]);
   }
+  const area = {
+    type: "Feature" as const,
+    properties: {},
+    geometry: { type: "Polygon" as const, coordinates: [coords] },
+  };
   return {
     type: "FeatureCollection" as const,
     features: [
-      {
-        type: "Feature" as const,
-        properties: {},
-        geometry: { type: "Polygon" as const, coordinates: [coords] },
-      },
+      ...(radiusKm > 0 ? [area] : []),
       {
         type: "Feature" as const,
         properties: {},
@@ -43,13 +44,13 @@ function circle({ lat, lng }: Point, radiusKm: number) {
 
 const EMPTY = { type: "FeatureCollection" as const, features: [] };
 
-// Click the map to place your base; the radius input draws the area around it.
+// Click the map to place a pin. With a radius, the area around it is drawn too.
 export default function LocationPicker({
   initial,
-  radiusKm,
+  radiusKm = 0,
 }: {
   initial: Point | null;
-  radiusKm: number;
+  radiusKm?: number;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);

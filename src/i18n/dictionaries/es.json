@@ -182,8 +182,7 @@
     "needLocation": "Haz clic en el mapa para indicar dónde trabajas.",
     "needName": "Escribe el nombre de tu negocio.",
     "badWebsite": "Escribe una dirección web completa que empiece por https://",
-    "toursTitle": "Tus tours",
-    "toursSoon": "Añadir y editar tours llega a continuación."
+    "toursTitle": "Tus tours"
   },
   "footer": {
     "rights": "Todos los derechos reservados.",
@@ -215,5 +214,46 @@
     "sports": "Deportes",
     "travel-tourism": "Viajes y turismo",
     "venues-theaters": "Recintos y teatros"
+  },
+  "tours": {
+    "needProfile": "Primero guarda tu perfil arriba; después podrás añadir tours.",
+    "none": "Todavía no has añadido ningún tour.",
+    "add": "Añadir un tour",
+    "newTitle": "Añadir un tour",
+    "editTitle": "Editar tour",
+    "intro": "Publica un tour 360° que hayas creado o que te pertenezca. Aparecerá en el mapa, en su categoría y en tu perfil.",
+    "back": "Volver a mi cuenta",
+    "title": "Título del tour",
+    "titleHint": "p. ej. Hotel Marina Skyline",
+    "url": "Enlace del tour",
+    "urlHint": "El enlace público para compartir el tour, empezando por https://",
+    "category": "Categoría",
+    "choose": "Elige…",
+    "platform": "Plataforma",
+    "other": "Otra",
+    "whereTitle": "¿Dónde está?",
+    "whereHint": "Haz clic en el mapa donde está el lugar. Ahí irá el pin del tour.",
+    "city": "Ciudad",
+    "country": "País",
+    "save": "Guardar tour",
+    "saving": "Guardando…",
+    "view": "Ver",
+    "edit": "Editar",
+    "delete": "Eliminar tour",
+    "deleteConfirm": "¿Eliminar este tour? No se puede deshacer.",
+    "status": {
+      "live": "Publicado",
+      "pending": "En revisión",
+      "hidden": "Oculto",
+      "broken_link": "Enlace roto"
+    },
+    "needTitle": "Escribe un título para el tour.",
+    "badUrl": "Escribe el enlace completo del tour, empezando por https://",
+    "duplicateUrl": "Este enlace de tour ya está en 360atlas.",
+    "needCategory": "Elige una categoría.",
+    "needPlatform": "Elige la plataforma.",
+    "needLocation": "Haz clic en el mapa para marcar dónde está el tour.",
+    "needPlace": "Escribe la ciudad y el país.",
+    "notFound": "No se encontró ese tour en tu cuenta."
   }
 }

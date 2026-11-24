@@ -46,9 +46,11 @@ export default async function TourPage({
       <div className="grid gap-8 lg:grid-cols-[3fr_2fr]">
         <div>
           <TourThumb listing={listing} className="aspect-[16/9] rounded-2xl" />
-          <p className="mt-3 inline-block rounded-full bg-amber-50 px-3 py-1 text-xs font-medium text-amber-800">
-            {dict.tour.sample}
-          </p>
+          {listing.sample && (
+            <p className="mt-3 inline-block rounded-full bg-amber-50 px-3 py-1 text-xs font-medium text-amber-800">
+              {dict.tour.sample}
+            </p>
+          )}
         </div>
 
         <div>

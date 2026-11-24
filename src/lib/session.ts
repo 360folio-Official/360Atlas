@@ -1,10 +1,10 @@
 import "server-only";
-import { eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { db } from "@/db";
-import { members, serviceAreas } from "@/db/schema";
+import { listings, members, serviceAreas } from "@/db/schema";
 import { auth } from "./auth";
 
 export type CurrentUser = { id: string; name: string; email: string; role: string };
@@ -77,4 +77,63 @@ export async function getMemberForUser(userId: string): Promise<MemberProfile | 
         }
       : null,
   };
+}
+
+export type MemberTour = {
+  id: number;
+  slug: string;
+  title: string;
+  tourUrl: string;
+  category: string;
+  platform: string;
+  city: string;
+  country: string;
+  lat: number | null;
+  lng: number | null;
+  status: "pending" | "live" | "broken_link" | "hidden";
+};
+
+const memberTourColumns = {
+  id: listings.id,
+  slug: listings.slug,
+  title: listings.title,
+  tourUrl: listings.tourUrl,
+  category: listings.categorySlug,
+  platform: listings.platform,
+  city: listings.city,
+  country: listings.country,
+  lat: listings.lat,
+  lng: listings.lng,
+  status: listings.status,
+};
+
+const toMemberTour = (
+  row: Omit<MemberTour, "city" | "country"> & { city: string | null; country: string | null },
+): MemberTour => ({
+  ...row,
+  city: row.city ?? "",
+  country: row.country ?? "",
+  lat: row.lat === null ? null : Number(row.lat),
+  lng: row.lng === null ? null : Number(row.lng),
+});
+
+// Every tour a member owns, newest first, whatever its status.
+export async function getMemberTours(memberId: number): Promise<MemberTour[]> {
+  const rows = await db
+    .select(memberTourColumns)
+    .from(listings)
+    .where(eq(listings.memberId, memberId))
+    .orderBy(desc(listings.createdAt), desc(listings.id));
+  return rows.map(toMemberTour);
+}
+
+// One of the member's own tours, or null if it isn't theirs.
+export async function getMemberTour(memberId: number, id: number): Promise<MemberTour | null> {
+  if (!Number.isSafeInteger(id)) return null;
+  const [row] = await db
+    .select(memberTourColumns)
+    .from(listings)
+    .where(and(eq(listings.id, id), eq(listings.memberId, memberId)))
+    .limit(1);
+  return row ? toMemberTour(row) : null;
 }

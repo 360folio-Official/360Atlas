@@ -6,10 +6,11 @@ import { updateTag } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { db } from "@/db";
-import { members, serviceAreas } from "@/db/schema";
+import { listings, members, serviceAreas } from "@/db/schema";
 import { isLocale } from "@/i18n/config";
 import { auth } from "./auth";
-import { platformOptions } from "./platforms";
+import { getCategory } from "./categories";
+import { platformOptions, tourPlatformOptions } from "./platforms";
 import { getCurrentUser } from "./session";
 
 // Errors are returned as keys into the dictionary so the form can translate them.
@@ -83,14 +84,14 @@ export async function signOut(form: FormData) {
 // Member profile
 // ---------------------------------------------------------------------------
 
-const slugify = (value: string) =>
+const slugify = (value: string, fallback = "creator") =>
   value
     .normalize("NFKD")
     .replace(/[̀-ͯ]/g, "")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
-    .slice(0, 80) || "creator";
+    .slice(0, 80) || fallback;
 
 // A slug nobody else uses: "studio", then "studio-2", "studio-3"…
 async function uniqueSlug(base: string, ownId?: number) {
@@ -106,11 +107,15 @@ async function uniqueSlug(base: string, ownId?: number) {
         )
     ).map((row) => row.slug),
   );
+  return nextFreeSlug(base, taken);
+}
+
+const nextFreeSlug = (base: string, taken: Set<string>) => {
   if (!taken.has(base)) return base;
   let n = 2;
   while (taken.has(`${base}-${n}`)) n++;
   return `${base}-${n}`;
-}
+};
 
 export async function saveProfile(_prev: FormState, form: FormData): Promise<FormState> {
   const user = await getCurrentUser();
@@ -206,4 +211,130 @@ export async function saveProfile(_prev: FormState, form: FormData): Promise<For
   updateTag("members");
   updateTag("listings");
   return { ok: true, slug };
+}
+
+// ---------------------------------------------------------------------------
+// Tours
+// ---------------------------------------------------------------------------
+
+// The signed-in user's member id, or null before they save a profile.
+async function currentMemberId(locale: string) {
+  const user = await getCurrentUser();
+  if (!user) redirect(`/${locale}/sign-in`);
+  const [member] = await db
+    .select({ id: members.id })
+    .from(members)
+    .where(eq(members.userId, user.id))
+    .limit(1);
+  return member?.id ?? null;
+}
+
+const validTourUrl = (value: string) => {
+  try {
+    const url = new URL(value);
+    return (url.protocol === "https:" || url.protocol === "http:") && url.hostname.includes(".");
+  } catch {
+    return false;
+  }
+};
+
+const isDuplicate = (error: unknown) =>
+  (error as { cause?: { code?: string }; code?: string })?.cause?.code === "ER_DUP_ENTRY" ||
+  (error as { code?: string })?.code === "ER_DUP_ENTRY";
+
+// Adds a tour, or updates one when the form has an id. New tours go live
+// straight away; there is no review step yet.
+export async function saveTour(_prev: FormState, form: FormData): Promise<FormState> {
+  const locale = localeOf(form);
+  const memberId = await currentMemberId(locale);
+  if (!memberId) return { error: "needProfile" };
+
+  const id = form.get("id") ? Number(form.get("id")) : null;
+  const title = text(form, "title", 200);
+  const tourUrl = text(form, "tourUrl", 700);
+  const category = text(form, "category", 40);
+  const platform = text(form, "platform", 60);
+  const city = text(form, "city", 120);
+  const country = text(form, "country", 120);
+  const lat = Number(form.get("lat"));
+  const lng = Number(form.get("lng"));
+
+  if (!title) return { error: "needTitle" };
+  if (!validTourUrl(tourUrl)) return { error: "badUrl" };
+  if (!getCategory(category)) return { error: "needCategory" };
+  if (!(tourPlatformOptions as string[]).includes(platform)) return { error: "needPlatform" };
+  if (
+    !form.get("lat") ||
+    !Number.isFinite(lat) ||
+    !Number.isFinite(lng) ||
+    Math.abs(lat) > 90 ||
+    Math.abs(lng) > 180
+  )
+    return { error: "needLocation" };
+  if (!city || !country) return { error: "needPlace" };
+
+  // The same tour link can only be listed once.
+  const [sameUrl] = await db
+    .select({ id: listings.id })
+    .from(listings)
+    .where(id ? and(eq(listings.tourUrl, tourUrl), ne(listings.id, id)) : eq(listings.tourUrl, tourUrl))
+    .limit(1);
+  if (sameUrl) return { error: "duplicateUrl" };
+
+  const values = {
+    title,
+    tourUrl,
+    categorySlug: category,
+    platform,
+    city,
+    country,
+    lat: Math.round(lat * 1e6) / 1e6,
+    lng: Math.round(lng * 1e6) / 1e6,
+  };
+
+  try {
+    if (id) {
+      const [result] = await db
+        .update(listings)
+        .set(values)
+        .where(and(eq(listings.id, id), eq(listings.memberId, memberId)));
+      if (!result.affectedRows) return { error: "notFound" };
+    } else {
+      const base = slugify(`${title} ${city}`, "tour");
+      const taken = new Set(
+        (
+          await db
+            .select({ slug: listings.slug })
+            .from(listings)
+            .where(like(listings.slug, `${base}%`))
+        ).map((row) => row.slug),
+      );
+      await db.insert(listings).values({
+        ...values,
+        slug: nextFreeSlug(base, taken),
+        memberId,
+        status: "live",
+      });
+    }
+  } catch (error) {
+    if (isDuplicate(error)) return { error: "duplicateUrl" };
+    console.error(error);
+    return { error: "generic" };
+  }
+
+  updateTag("listings");
+  redirect(`/${locale}/account#tours`);
+}
+
+export async function deleteTour(form: FormData) {
+  const locale = localeOf(form);
+  const memberId = await currentMemberId(locale);
+  const id = Number(form.get("id"));
+  if (memberId && Number.isSafeInteger(id)) {
+    await db
+      .delete(listings)
+      .where(and(eq(listings.id, id), eq(listings.memberId, memberId)));
+    updateTag("listings");
+  }
+  redirect(`/${locale}/account#tours`);
 }

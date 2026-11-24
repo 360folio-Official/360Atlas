@@ -45,7 +45,10 @@ export default function AuthForm({
   );
 
   return (
+    // method="post": if someone submits before the scripts load, the browser
+    // must not put the password in the address bar.
     <form
+      method="post"
       onSubmit={keepValues(action)}
       className="w-full max-w-md rounded-3xl border border-white/10 bg-ink/70 p-6 shadow-[0_30px_80px_-30px] shadow-black backdrop-blur-md sm:p-8"
     >

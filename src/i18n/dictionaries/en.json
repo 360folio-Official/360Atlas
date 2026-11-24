@@ -182,8 +182,7 @@
     "needLocation": "Click the map to set where you work.",
     "needName": "Enter your business name.",
     "badWebsite": "Enter a full website address starting with https://",
-    "toursTitle": "Your tours",
-    "toursSoon": "Adding and editing tours comes next."
+    "toursTitle": "Your tours"
   },
   "footer": {
     "rights": "All rights reserved.",
@@ -215,5 +214,46 @@
     "sports": "Sports",
     "travel-tourism": "Travel & Tourism",
     "venues-theaters": "Venues & Theaters"
+  },
+  "tours": {
+    "needProfile": "Save your profile above first, then you can add tours.",
+    "none": "You haven't added any tours yet.",
+    "add": "Add a tour",
+    "newTitle": "Add a tour",
+    "editTitle": "Edit tour",
+    "intro": "List a 360° tour you made or own. It shows on the map, in its category and on your profile.",
+    "back": "Back to my account",
+    "title": "Tour title",
+    "titleHint": "e.g. Marina Skyline Hotel",
+    "url": "Tour link",
+    "urlHint": "The public share link of the tour, starting with https://",
+    "category": "Category",
+    "choose": "Choose…",
+    "platform": "Platform",
+    "other": "Other",
+    "whereTitle": "Where is it?",
+    "whereHint": "Click the map where the place is. The tour's pin goes there.",
+    "city": "City",
+    "country": "Country",
+    "save": "Save tour",
+    "saving": "Saving…",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete tour",
+    "deleteConfirm": "Delete this tour? This can't be undone.",
+    "status": {
+      "live": "Live",
+      "pending": "Pending review",
+      "hidden": "Hidden",
+      "broken_link": "Link not working"
+    },
+    "needTitle": "Enter a title for the tour.",
+    "badUrl": "Enter the full tour link, starting with https://",
+    "duplicateUrl": "This tour link is already listed on 360atlas.",
+    "needCategory": "Choose a category.",
+    "needPlatform": "Choose the platform.",
+    "needLocation": "Click the map to mark where the tour is.",
+    "needPlace": "Enter the city and country.",
+    "notFound": "That tour wasn't found in your account."
   }
 }
